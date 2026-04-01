@@ -7,12 +7,12 @@ const siteMetadata = {
   language: 'en-us',
   theme: 'dark', // system, dark or light
   siteUrl: 'https://ryanccj.github.io',
-  siteRepo: 'https://github.com/RyanCCJ/RyanCCJ.github.io',
+  siteRepo: 'https://github.com/ryanccj/ryanccj.github.io',
   siteLogo: '/static/images/logo.png',
   socialBanner: '/static/images/twitter-card.png',
   email: 'ryanccj@gmail.com',
   phone: '+886 958551270',
-  github: 'https://github.com/RyanCCJ',
+  github: 'https://github.com/ryanccj',
   facebook: 'https://www.facebook.com/ryan.chung.146',
   instagram: 'https://instagram.com/ryanccj?igshid=OGQ5ZDc2ODk2ZA%3D%3D&utm_source=qr',
   linkedin: 'https://www.linkedin.com/in/ryanccj/',
@@ -53,7 +53,7 @@ const siteMetadata = {
     giscusConfig: {
       // Visit the link below, and follow the steps in the 'configuration' section
       // https://giscus.app/
-      repo: 'RyanCCJ/RyanCCJ.github.io',
+      repo: 'ryanccj/ryanccj.github.io',
       repositoryId: 'MDEwOlJlcG9zaXRvcnkzNzk2NDc4OTg=',
       category: 'Announcements',
       categoryId: 'DIC_kwDOFqD3ms4CesNJ',

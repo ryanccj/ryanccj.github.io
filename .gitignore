@@ -45,3 +45,12 @@ yarn-error.log*
 
 # Contentlayer
 .contentlayer
+
+# agent
+.agent/
+.claude/
+.codex/
+.gemini/
+.github/prompts/
+.github/skills/
+openspec/

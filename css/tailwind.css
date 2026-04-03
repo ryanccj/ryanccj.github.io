@@ -33,3 +33,179 @@ input:-webkit-autofill:focus {
 .katex-display {
   overflow: auto hidden;
 }
+
+@layer components {
+  .gallery-masonry {
+    columns: 1;
+    column-gap: 1rem;
+  }
+
+  .gallery-masonry-item {
+    break-inside: avoid;
+    margin-bottom: 1rem;
+  }
+
+  .gallery-filter-pill {
+    @apply rounded-full border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-600 transition duration-300 hover:-translate-y-0.5 hover:border-gray-300 hover:text-gray-900 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-gray-700 dark:hover:text-gray-100;
+  }
+
+  .gallery-filter-pill-active {
+    @apply border-gray-900 bg-gray-900 text-white shadow-lg shadow-gray-900/10 dark:border-gray-100 dark:bg-gray-100 dark:text-gray-950 dark:shadow-black/20;
+  }
+
+  .gallery-card-shell {
+    @apply relative block overflow-hidden rounded-[1.75rem] border border-gray-200/80 bg-gray-100 shadow-sm transition duration-300 ease-out hover:-translate-y-1 hover:shadow-xl hover:shadow-gray-900/10 dark:border-gray-800/80 dark:bg-gray-900 dark:hover:shadow-black/25;
+  }
+
+  .gallery-card-image {
+    transition:
+      transform 350ms ease,
+      opacity 350ms ease;
+  }
+
+  .gallery-card-overlay {
+    @apply pointer-events-none absolute inset-x-0 bottom-0 flex min-h-[7rem] items-end bg-gradient-to-t from-black/80 via-black/35 to-transparent px-5 py-4 opacity-95 transition duration-300;
+  }
+
+  .gallery-card-shell:hover .gallery-card-image,
+  .gallery-card-shell:focus-visible .gallery-card-image {
+    transform: scale(1.035);
+    opacity: 0.92;
+  }
+
+  .gallery-card-shell:hover .gallery-card-overlay,
+  .gallery-card-shell:focus-visible .gallery-card-overlay {
+    opacity: 1;
+  }
+
+  .gallery-card-filter-out {
+    animation: galleryFilterOut 130ms ease-in forwards;
+  }
+
+  .gallery-card-filter-in {
+    animation: galleryFilterIn 220ms ease-out both;
+  }
+
+  .gallery-lightbox {
+    width: min(100vw - 1.5rem, 80rem);
+    max-width: 80rem;
+    border: none;
+    background: transparent;
+    padding: 0;
+    color: inherit;
+  }
+
+  .gallery-lightbox::backdrop {
+    background: rgba(10, 15, 23, 0.78);
+    backdrop-filter: blur(18px);
+  }
+
+  .gallery-lightbox-panel {
+    @apply rounded-[2rem] border border-white/10 bg-white/90 p-5 text-gray-950 shadow-2xl shadow-black/25 backdrop-blur-xl dark:bg-gray-950/90 dark:text-gray-50 sm:p-8;
+    animation: galleryLightboxIn 220ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .gallery-lightbox-panel-closing {
+    animation: galleryLightboxOut 180ms ease-in forwards;
+  }
+
+  .gallery-lightbox-icon {
+    @apply inline-flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 bg-white/80 text-2xl text-gray-700 transition duration-300 hover:border-gray-300 hover:text-gray-950 dark:border-gray-800 dark:bg-gray-900/80 dark:text-gray-300 dark:hover:border-gray-700 dark:hover:text-white;
+  }
+
+  .gallery-lightbox-nav {
+    @apply absolute top-1/2 z-10 inline-flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-black/30 text-3xl text-white/80 opacity-90 transition duration-300 hover:bg-black/45 hover:text-white md:h-14 md:w-14;
+  }
+
+  .gallery-lightbox-media[data-direction='1'] {
+    animation: gallerySlideNext 260ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .gallery-lightbox-media[data-direction='-1'] {
+    animation: gallerySlidePrev 260ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}
+
+@media (min-width: 640px) {
+  .gallery-masonry {
+    columns: 2;
+  }
+}
+
+@media (min-width: 1024px) {
+  .gallery-masonry {
+    columns: 3;
+  }
+}
+
+@keyframes galleryFilterOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
+@keyframes galleryFilterIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes galleryLightboxIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes galleryLightboxOut {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(12px) scale(0.985);
+  }
+}
+
+@keyframes gallerySlideNext {
+  from {
+    opacity: 0;
+    transform: translateX(24px) scale(0.99);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes gallerySlidePrev {
+  from {
+    opacity: 0;
+    transform: translateX(-24px) scale(0.99);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}

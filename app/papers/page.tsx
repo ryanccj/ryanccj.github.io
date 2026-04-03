@@ -1,15 +1,15 @@
 import ListLayout from '@/layouts/ListLayoutWithTags'
 import { allCoreContent, sortPosts } from 'pliny/utils/contentlayer.js'
-import { allBlogs } from 'contentlayer/generated'
+import { allPapers } from 'contentlayer/generated'
 import { genPageMetadata } from 'app/seo'
-import blogTagData from 'app/blog-tag-data.json'
+import paperTagData from 'app/paper-tag-data.json'
 
 const POSTS_PER_PAGE = 5
 
-export const metadata = genPageMetadata({ title: 'Blog' })
+export const metadata = genPageMetadata({ title: 'Papers' })
 
-export default function BlogPage() {
-  const posts = allCoreContent(sortPosts(allBlogs))
+export default function PapersPage() {
+  const posts = allCoreContent(sortPosts(allPapers))
   const pageNumber = 1
   const initialDisplayPosts = posts.slice(
     POSTS_PER_PAGE * (pageNumber - 1),
@@ -25,9 +25,11 @@ export default function BlogPage() {
       posts={posts}
       initialDisplayPosts={initialDisplayPosts}
       pagination={pagination}
-      title="All Posts"
-      tagCounts={blogTagData as Record<string, number>}
-      tagBasePath="/blog/tags"
+      title="Papers"
+      listPath="/papers"
+      listLabel="All Papers"
+      tagCounts={paperTagData as Record<string, number>}
+      tagBasePath="/papers/tags"
     />
   )
 }

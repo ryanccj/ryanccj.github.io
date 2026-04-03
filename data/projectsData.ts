@@ -159,7 +159,7 @@ const projectsData: Project[] = [
     description: `I created a simple RPG game using Java, where you can play as a thief, a monk, 
     or a bard to explore this world and build your own cottage by accumulating assets.`,
     imgSrc: '/static/images/project/RPG.png',
-    href: 'https://github.com/RyanCCJ/Light-RPG',
+    href: 'https://github.com/ryanccj/Light-RPG',
   },
 ]
 

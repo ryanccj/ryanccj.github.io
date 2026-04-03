@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 import { CoreContent } from 'pliny/utils/contentlayer.js'
-import type { Blog, Authors } from 'contentlayer/generated'
+import type { Blog, Paper, Authors } from 'contentlayer/generated'
 import Comments from '@/components/Comments'
 import Link from '@/components/Link'
 import PageTitle from '@/components/PageTitle'
@@ -22,7 +22,7 @@ const postDateTemplate: Intl.DateTimeFormatOptions = {
 }
 
 interface LayoutProps {
-  content: CoreContent<Blog>
+  content: CoreContent<Blog | Paper>
   authorDetails: CoreContent<Authors>[]
   next?: { path: string; title: string }
   prev?: { path: string; title: string }
@@ -32,6 +32,8 @@ interface LayoutProps {
 export default function PostLayout({ content, authorDetails, next, prev, children }: LayoutProps) {
   const { filePath, path, slug, date, title, tags } = content
   const basePath = path.split('/')[0]
+  const backLabel = basePath === 'papers' ? 'papers' : 'blog'
+  const tagPathPrefix = basePath === 'papers' ? '/papers/tags' : '/blog/tags'
 
   return (
     <SectionContainer>
@@ -120,7 +122,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                     </h2>
                     <div className="flex flex-wrap">
                       {tags.map((tag) => (
-                        <Tag key={tag} text={tag} />
+                        <Tag key={tag} text={tag} pathPrefix={tagPathPrefix} />
                       ))}
                     </div>
                   </div>
@@ -154,9 +156,9 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                 <Link
                   href={`/${basePath}`}
                   className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-                  aria-label="Back to the blog"
+                  aria-label={`Back to the ${backLabel}`}
                 >
-                  &larr; Back to the blog
+                  {`← Back to the ${backLabel}`}
                 </Link>
               </div>
             </footer>

@@ -42,12 +42,37 @@ const computedFields: ComputedFields = {
   toc: { type: 'string', resolve: (doc) => extractTocHeadings(doc.body.raw) },
 }
 
-/**
- * Count the occurrences of all tags across blog posts and write to json file
- */
-function createTagCount(allBlogs) {
+const postFields = {
+  title: { type: 'string', required: true },
+  date: { type: 'date', required: true },
+  tags: { type: 'list', of: { type: 'string' }, default: [] },
+  lastmod: { type: 'date' },
+  draft: { type: 'boolean' },
+  summary: { type: 'string' },
+  images: { type: 'json' },
+  authors: { type: 'list', of: { type: 'string' } },
+  layout: { type: 'string' },
+  bibliography: { type: 'string' },
+  canonicalUrl: { type: 'string' },
+} as const
+
+const structuredData = {
+  type: 'json',
+  resolve: (doc) => ({
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: doc.title,
+    datePublished: doc.date,
+    dateModified: doc.lastmod || doc.date,
+    description: doc.summary,
+    image: doc.images ? doc.images[0] : siteMetadata.socialBanner,
+    url: `${siteMetadata.siteUrl}/${doc._raw.flattenedPath}`,
+  }),
+} as const
+
+function createTagCount(allPosts, outputPath) {
   const tagCount: Record<string, number> = {}
-  allBlogs.forEach((file) => {
+  allPosts.forEach((file) => {
     if (file.tags && (!isProduction || file.draft !== true)) {
       file.tags.forEach((tag) => {
         const formattedTag = slug(tag)
@@ -59,17 +84,17 @@ function createTagCount(allBlogs) {
       })
     }
   })
-  writeFileSync('./app/tag-data.json', JSON.stringify(tagCount))
+  writeFileSync(outputPath, JSON.stringify(tagCount))
 }
 
-function createSearchIndex(allBlogs) {
+function createSearchIndex(allPosts) {
   if (
     siteMetadata?.search?.provider === 'kbar' &&
     siteMetadata.search.kbarConfig.searchDocumentsPath
   ) {
     writeFileSync(
       `public/${siteMetadata.search.kbarConfig.searchDocumentsPath}`,
-      JSON.stringify(allCoreContent(sortPosts(allBlogs)))
+      JSON.stringify(allCoreContent(sortPosts(allPosts)))
     )
     console.log('Local search index generated...')
   }
@@ -79,34 +104,21 @@ export const Blog = defineDocumentType(() => ({
   name: 'Blog',
   filePathPattern: 'blog/**/*.mdx',
   contentType: 'mdx',
-  fields: {
-    title: { type: 'string', required: true },
-    date: { type: 'date', required: true },
-    tags: { type: 'list', of: { type: 'string' }, default: [] },
-    lastmod: { type: 'date' },
-    draft: { type: 'boolean' },
-    summary: { type: 'string' },
-    images: { type: 'json' },
-    authors: { type: 'list', of: { type: 'string' } },
-    layout: { type: 'string' },
-    bibliography: { type: 'string' },
-    canonicalUrl: { type: 'string' },
-  },
+  fields: postFields,
   computedFields: {
     ...computedFields,
-    structuredData: {
-      type: 'json',
-      resolve: (doc) => ({
-        '@context': 'https://schema.org',
-        '@type': 'BlogPosting',
-        headline: doc.title,
-        datePublished: doc.date,
-        dateModified: doc.lastmod || doc.date,
-        description: doc.summary,
-        image: doc.images ? doc.images[0] : siteMetadata.socialBanner,
-        url: `${siteMetadata.siteUrl}/${doc._raw.flattenedPath}`,
-      }),
-    },
+    structuredData,
+  },
+}))
+
+export const Paper = defineDocumentType(() => ({
+  name: 'Paper',
+  filePathPattern: 'papers/**/*.mdx',
+  contentType: 'mdx',
+  fields: postFields,
+  computedFields: {
+    ...computedFields,
+    structuredData,
   },
 }))
 
@@ -132,7 +144,7 @@ export const Authors = defineDocumentType(() => ({
 
 export default makeSource({
   contentDirPath: 'data',
-  documentTypes: [Blog, Authors],
+  documentTypes: [Blog, Paper, Authors],
   mdx: {
     cwd: process.cwd(),
     remarkPlugins: [
@@ -154,7 +166,14 @@ export default makeSource({
   },
   onSuccess: async () => {
     const allBlogs = JSON.parse(readFileSync('./.contentlayer/generated/Blog/_index.json', 'utf8'))
-    createTagCount(allBlogs)
-    createSearchIndex(allBlogs)
+    const allPapers = JSON.parse(
+      readFileSync('./.contentlayer/generated/Paper/_index.json', 'utf8')
+    )
+    const allPosts = [...allBlogs, ...allPapers]
+
+    createTagCount(allPosts, './app/tag-data.json')
+    createTagCount(allBlogs, './app/blog-tag-data.json')
+    createTagCount(allPapers, './app/paper-tag-data.json')
+    createSearchIndex(allPosts)
   },
 })

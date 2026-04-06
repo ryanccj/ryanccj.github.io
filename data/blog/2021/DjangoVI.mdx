@@ -166,11 +166,11 @@ path('logout/', views.logout),
 
 **( login.html )** http://localhost:8000/login/
 
-![](/static/images/2021/Django/login.png)
+![](/static/images/blog/2021/Django/login.png)
 
 **( index.html )** http://localhost:8000/
 
-![](/static/images/2021/Django/login-success.jpg)
+![](/static/images/blog/2021/Django/login-success.jpg)
 <br/>
 
 **補充：** 我們也可以使用 Django Admin 介面預設的「認證與授權」中「使用者」功能來進行用戶登入與註冊，只要先在 views.py 中輸入：
@@ -190,12 +190,12 @@ from django.contrib import auth
 此處以最常見的 Google 登入為例，我們首先至 [Google API](https://console.cloud.google.com/apis/) 創建一個新的專案。
 接著進入「憑證」頁面，點選上方的「+ 建立憑證」，選擇「OAuth 用戶端 ID」，建立一個新的登入服務。
 
-![](/static/images/2021/Django/Google-OAuth.png)
+![](/static/images/blog/2021/Django/Google-OAuth.png)
 
 在「已授權的 JavaScript 來源」輸入網址，以這個測試專案為例，直接輸入 `http://localhost:8000` 即可；在「已授權的重新導向 URI」則填入我們等下會用到的套件 django-allauth 的預設回傳網址 `http://localhost:8000/accounts/google/login/callback/` 。
 完成後會產生用戶端「編號 ID」與「密鑰 secret」，將這兩個資料記錄下來供後續使用。
 
-<img src='/static/images/2021/Django/Google-OAuth-setting.png' width='450'/>
+<img src='/static/images/blog/2021/Django/Google-OAuth-setting.png' width='450'/>
 
 接著我們安裝 django-allauth 套件：
 ``` bash
@@ -231,10 +231,10 @@ path('accounts/', include('allauth.urls'))
 
 當我們執行過 makemigrations、migrate，重啟 server 後就可以在 admin 介面中看到許多新東西。
 點選「網站」的變更按鈕，修改 `example.com` 為目前預設的 `localhost:8000`：
-![](/static/images/2021/Django/admin-site.png)
+![](/static/images/blog/2021/Django/admin-site.png)
 
 然後新增「社群應用程式」，選擇提供者為 Google，將剛剛得到的編號 (client ID) 與密鑰 (secret key) 填入，並把 `localhost:8000` 加入下面的可用網站中，Provider ID 與 Key 則可以留空：
-![](/static/images/2021/Django/admin-social-app.png)
+![](/static/images/blog/2021/Django/admin-social-app.png)
 
 接著我們修改 login.html，載入模組並新增 Google 登入按鈕：
 ``` python
@@ -246,7 +246,7 @@ path('accounts/', include('allauth.urls'))
 回到登入頁面 [http://localhost:8000/login/](http://localhost:8000/login/)，可以看到多了一個第三方登入按鈕。
 點擊此按鈕會自動跳轉至 Google 登入頁面，登入完成後會以 gmail 帳戶登入並跳轉至主畫面。
 
-![](/static/images/2021/Django/Google-account.png)
-![](/static/images/2021/Django/Google-account2.png)
+![](/static/images/blog/2021/Django/Google-account.png)
+![](/static/images/blog/2021/Django/Google-account2.png)
 
 若要連接社群帳戶與一般帳戶之間的關係，可以去 models 裡進一步設定，在此便不贅述，可以參考第四章的內容。

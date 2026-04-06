@@ -6,7 +6,7 @@ draft: false
 summary: 'This project primarily explores the WPT in short-range communication'
 ---
 
-![](/static/images/2018/WPT/title.jpg)
+![](/static/images/blog/2018/WPT/title.jpg)
 
 ## 一、前言
 
@@ -33,7 +33,7 @@ $$ M = k_{12}\sqrt{L_1 L_2} $$
 藉由上述公式，便可以簡易推導耦合係數與線圈的距離、形狀等幾何關係。
 
 <center>
-    <img src='/static/images/2018/WPT/fig1.png' width='600'/>
+    <img src='/static/images/blog/2018/WPT/fig1.png' width='600'/>
     <small>
         **Fig. 1.** (a) Simply block diagram of a two-coil resonant WPT system.  
         (b) Two coaxial single-turn filament rectangular coils' configuration.
@@ -55,7 +55,7 @@ $$\small \qquad \qquad + \;\sqrt{(b_i-d_j)^2+z^2+(a_i-c_j)^2}-(a_i-c_j) \cdot \t
 透過一對 Transmitting (TX) coil 與 Receiving (RX) coil 來傳遞磁場能量。
 
 <center>
-    <img src='/static/images/2018/WPT/fig2.png' width='400'/>
+    <img src='/static/images/blog/2018/WPT/fig2.png' width='400'/>
     <small>**Fig. 2.** Simply block diagram of a four-coil resonant WPT system.</small>
 </center>
 
@@ -64,7 +64,7 @@ $$\small \qquad \qquad + \;\sqrt{(b_i-d_j)^2+z^2+(a_i-c_j)^2}-(a_i-c_j) \cdot \t
 
 <center>
     $$ \dfrac{k_{ST}\:k_{RD}}{k_{TR}} \approx 1 $$
-    <img src='/static/images/2018/WPT/fig3.png' width='450'/>
+    <img src='/static/images/blog/2018/WPT/fig3.png' width='450'/>
     <small>
         **Fig. 3.** (a) Equivalent circuit model of a 4-coil resonant WPT system.  
         (b) Simplified circuit at the resonant frequency.
@@ -78,7 +78,7 @@ $$\small \qquad \qquad + \;\sqrt{(b_i-d_j)^2+z^2+(a_i-c_j)^2}-(a_i-c_j) \cdot \t
 關於頻率分裂的計算與探討，主要參考 [^1] [^2]。
 
 <center>
-    <img src='/static/images/2018/WPT/fig4.png' width='500'/>
+    <img src='/static/images/blog/2018/WPT/fig4.png' width='500'/>
     <small>**Fig. 4.** Frequency splitting phenomenon in different distances.</small>
 </center>
 
@@ -89,16 +89,16 @@ $$\small \qquad \qquad + \;\sqrt{(b_i-d_j)^2+z^2+(a_i-c_j)^2}-(a_i-c_j) \cdot \t
 透過觀察其反射係數 (S11)、傳輸效率 (S21)、磁場分佈與諧振頻率之間的關係來設計電路，此流程不僅能夠實際模擬電路的磁場行為，對於功率轉換的結果也能有更清楚的認識。
 
 <center>
-    <img src='/static/images/2018/WPT/fig5.png' width='600'/>
+    <img src='/static/images/blog/2018/WPT/fig5.png' width='600'/>
     <small>**Fig. 5.** Four-coil resonant module in HFSS.</small>
 </center>
 
 如下圖六、七即為四線圈模型在 distance=10mm 下於 HFSS 的模擬情形。
 
 <center>
-    <img src='/static/images/2018/WPT/fig6.png' width='600'/>
+    <img src='/static/images/blog/2018/WPT/fig6.png' width='600'/>
     <small>**Fig. 6.** H field of four-coil resonant module in HFSS.</small>
-    <img src='/static/images/2018/WPT/fig7.jpg' width='600'/>
+    <img src='/static/images/blog/2018/WPT/fig7.jpg' width='600'/>
     <small>**Fig. 7.** S<sub>21</sub> of four-coil resonant module in HFSS with frequency splitting.</small>
 </center>
 
@@ -121,8 +121,8 @@ $$\small \qquad \qquad + \;\sqrt{(b_i-d_j)^2+z^2+(a_i-c_j)^2}-(a_i-c_j) \cdot \t
 由兩張圖我們可以清楚發現，當線圈距離在 4 公分時，功率傳輸產生極大值，若將線圈繼續靠攏，則會產生頻率分裂現象，傳輸功率進而下降。
 
 <center>
-    (a) <img src='/static/images/2018/WPT/fig8a.png' width='350' style={{display:'inline'}}/> &nbsp;
-    (b) <img src='/static/images/2018/WPT/fig8b.png' width='325' style={{display:'inline'}}/>  
+    (a) <img src='/static/images/blog/2018/WPT/fig8a.png' width='350' style={{display:'inline'}}/> &nbsp;
+    (b) <img src='/static/images/blog/2018/WPT/fig8b.png' width='325' style={{display:'inline'}}/>  
     <small>
         **Fig. 8.** (a) The frequency splitting phenomenon in different distances.  
         (b) Power efficiency and transferred in different distances.
@@ -133,13 +133,13 @@ $$\small \qquad \qquad + \;\sqrt{(b_i-d_j)^2+z^2+(a_i-c_j)^2}-(a_i-c_j) \cdot \t
 其測量結果如下圖十，由圖中可以清楚看見當頻率在 12 MHz 附近時，產生明顯的功率傳輸現象。
 
 <center>
-    (a) <img src='/static/images/2018/WPT/fig9a.png' width='300' style={{display:'inline'}}/> &nbsp;
-    (b) <img src='/static/images/2018/WPT/fig9b.png' width='300' style={{display:'inline'}}/>  
+    (a) <img src='/static/images/blog/2018/WPT/fig9a.png' width='300' style={{display:'inline'}}/> &nbsp;
+    (b) <img src='/static/images/blog/2018/WPT/fig9b.png' width='300' style={{display:'inline'}}/>  
     <small>**Fig. 9.** (a)(b) Implementation of wireless power transfer circuit.</small>
 </center>
 
 <center>
-    <img src='/static/images/2018/WPT/fig10.png' width='600'/>
+    <img src='/static/images/blog/2018/WPT/fig10.png' width='600'/>
     <small>**Fig. 10.** The actual performance in different frequencies and distances.</small>
 </center>
 

@@ -15,7 +15,7 @@ CLIP 的原理主要是利用蛋白質與 RNA 會在 256nm 紫外光照射下發
 
 CLIP 基本技術流程如圖上半部所示、CLIP-Seq 流程則如完整圖示。
 
-<img src="/static/images/2021/CLIP-and-CLASH/CLIP.png" width='500'/>
+<img src="/static/images/blog/2021/CLIP-and-CLASH/CLIP.png" width='500'/>
 
 CLIP-Seq 資料的分析通常需要實驗組與對照組相互比對，實驗組的內容是將與蛋白質-RNA 結合對抓下來後使用免疫沉澱將蛋白質去除，將剩下的會與蛋白質結合之 RNA 去做定序並給定序列出現過的次數，稱為 read count；對照組的內容為直接打破細胞核中後對其中的 RNA 片段做定序並給定 read count。
 
@@ -31,7 +31,7 @@ CLIP-Seq 資料的分析通常需要實驗組與對照組相互比對，實驗�
 
 一種將蛋白質視為抗原，並利用抗體與之進行特異性結合的特性，來進行研究。這項技術可用來將含有上千種不同蛋白質的樣品中，分離和濃縮出特定蛋白質。
 
-<img src="/static/images/2021/CLIP-and-CLASH/IP.png" width='450'/>
+<img src="/static/images/blog/2021/CLIP-and-CLASH/IP.png" width='450'/>
 
 - 次世代基因定序(Next Generation Sequencing, **NGS**)
 
@@ -45,9 +45,9 @@ CLIP-Seq 資料的分析通常需要實驗組與對照組相互比對，實驗�
 3. 透過橋式聚合酶鏈鎖反應進行增幅。
 4. loding 不同鹼基且標記特定可移除螢光分子的去氧核糖核苷酸 (dNTP) 與反應試劑，重覆進行螢光標記移除與偵測，以達到快速且大量的定序結果。
 
-<img src="/static/images/2021/CLIP-and-CLASH/sequencing1.png" width='500'/>
-<img src="/static/images/2021/CLIP-and-CLASH/sequencing2.png" width='500'/>
-<img src="/static/images/2021/CLIP-and-CLASH/sequencing3.png" width='500'/>
+<img src="/static/images/blog/2021/CLIP-and-CLASH/sequencing1.png" width='500'/>
+<img src="/static/images/blog/2021/CLIP-and-CLASH/sequencing2.png" width='500'/>
+<img src="/static/images/blog/2021/CLIP-and-CLASH/sequencing3.png" width='500'/>
 
 ---
 
@@ -60,7 +60,7 @@ CLASH (Cross-linking ligation and sequencing of hybrids) 實驗技術是由 CLIP
 [^2]: A. Helwak and D. Tollervey, “Mapping the miRNA interactome by cross-linking ligation and sequencing of hybrids (CLASH),” Nature Protocols, vol. 9, no. 3, pp. 711–728, Feb. 2014, doi: https://doi.org/10.1038/nprot.2014.043.
 [^3]: A. Helwak, G. Kudla, T. Dudnakova, and D. Tollervey, “Mapping the Human miRNA Interactome by CLASH Reveals Frequent Noncanonical Binding,” Cell, vol. 153, no. 3, pp. 654–665, Apr. 2013, doi: https://doi.org/10.1016/j.cell.2013.03.043.
 
-<img src="/static/images/2021/CLIP-and-CLASH/CLASH.png" width='600'/>
+<img src="/static/images/blog/2021/CLIP-and-CLASH/CLASH.png" width='600'/>
 
 ### 步驟
 1. 利用紫外光照射，使 RNA 與蛋白質之間產生共價交聯(Crosslink)，使其複 合物結合更加緊密。
@@ -74,7 +74,7 @@ CLASH (Cross-linking ligation and sequencing of hybrids) 實驗技術是由 CLIP
 
 > CLASH maps RNA-RNA interactions. In this method, RNA-protein complexes are UV-crosslinked and affinity-purified. RNA-RNA hybrids are ligated, isolated, and reverse-transcribed into cDNA. Deep sequencing of the cDNA provides high-resolution chimeric reads of RNA-RNA interactions.
 
-![](/static/images/2021/CLIP-and-CLASH/CLASH-wiki.png)
+![](/static/images/blog/2021/CLIP-and-CLASH/CLASH-wiki.png)
 
 **Ligation** 連接
 
@@ -90,7 +90,7 @@ Complementary DNA ( 互補DNA )，是以 RNA 為模板反轉錄成的複製品
 
 ## 兩者比較
 
-<img src='/static/images/2021/CLIP-and-CLASH/CLIP-vs-CLASH.jpg' width='600'/>
+<img src='/static/images/blog/2021/CLIP-and-CLASH/CLIP-vs-CLASH.jpg' width='600'/>
 圖片來源為 CLASH 原始論文 [^2]
 
 ### 補充
@@ -102,4 +102,4 @@ Complementary DNA ( 互補DNA )，是以 RNA 為模板反轉錄成的複製品
 
 [^4]: Zhang C, Darnell RB, "Mapping in vivo protein-RNA interactions at single-nucleotide resolution from HITS-CLIP data," Nature biotechnology, vol. 29, no.7, pp. 607-614, Jun 2011, doi:10.1038/nbt.1873.
 
-![](/static/images/2021/CLIP-and-CLASH/CIMS.jpg)
+![](/static/images/blog/2021/CLIP-and-CLASH/CIMS.jpg)

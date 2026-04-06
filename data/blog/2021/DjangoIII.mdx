@@ -138,7 +138,7 @@ urlpatterns = [
 
 全部完成後，進入 http://localhost:8000/ ，成果如下：
 
-![](/static/images/2021/Django/blog-home.png)
+![](/static/images/blog/2021/Django/blog-home.png)
 
 另外，各位可能會感到好奇，side bar 中是怎麼讀入圖片檔的？
 我們需要透過 Django 語法 `{% static ... %}` 來讀入媒體路徑，並在前面加上 `{% load static %}` 語法（整份 html 只需要打一次）。
@@ -243,7 +243,7 @@ def showpost(request, slug):
 ```
 完成後點擊首頁的文章標題，會進入新頁面：
 
-![](/static/images/2021/Django/blog-post5.png)
+![](/static/images/blog/2021/Django/blog-post5.png)
 
 這時我們觀察網址，會看到 http://localhost:8000/post/post5/ ，代表成功傳遞 post.slug 作為網址內容。事實上，我們很常在部落格中看到利用時間作為文章網址安排，如以下範例：
 ```
@@ -277,7 +277,7 @@ path('post/<int:y>/<int:m>/<int:d>/<int:post_num>/', views.showpost, name='post_
 
 當我們嘗試連到不存在的網址，瀏覽器會顯示 Page not found (404) ，這代表 urls.py 裡面沒有可以正確對照的路徑。
 
-![](/static/images/2021/Django/404.png)
+![](/static/images/blog/2021/Django/404.png)
 
 若我們不想要出現這種錯誤訊息，可以修改 settings.py 中關於 debug 與 host 的設定，再透過自訂 404 頁面來將使用者導回正確的頁面：
 

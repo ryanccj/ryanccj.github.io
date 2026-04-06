@@ -6,7 +6,7 @@ draft: false
 summary: 'LLM 系列文的第三章，著重在 RAG 的原理和實作方法'
 ---
 
-![](/static/images/2024/LLM/LLM3.png)
+![](/static/images/blog/2024/LLM/LLM3.png)
 
 ## 目錄
 
@@ -35,8 +35,8 @@ summary: 'LLM 系列文的第三章，著重在 RAG 的原理和實作方法'
 要搜尋時，我們會透過資料檢索系統將問題與資料庫內容做「相似度匹配」，選出最適合的資料後一起丟給 generative model (eg. LLM) 做答案的生成。
 整個流程可以參考以下圖片。
 
-<img src="/static/images/2024/LLM/RAG1.png" style={{margin:'auto'}}/>
-<img src="/static/images/2024/LLM/RAG2.png" style={{margin:'auto'}}/>
+<img src="/static/images/blog/2024/LLM/RAG1.png" style={{margin:'auto'}}/>
+<img src="/static/images/blog/2024/LLM/RAG2.png" style={{margin:'auto'}}/>
 <center><small>Indexing, retrieval and generation. Source: [LangChain, Build a RAG App](https://python.langchain.com/docs/tutorials/rag/)</small></center>
 
 過去研究表明，RAG 在知識性問答（Jeopardy question）的情境中能顯著提升答案的事實性 (Factuality 42.7%) 和具體性 (Specificity 37.4%) [^1]，大幅降低幻覺 (hallucination) 的發生。
@@ -56,7 +56,7 @@ summary: 'LLM 系列文的第三章，著重在 RAG 的原理和實作方法'
 以下內容修改自 [Nvidia Deep Learning Institute](https://www.nvidia.com/en-us/training/) 的線上課程 [Building RAG Agents with LLMs](https://learn.nvidia.com/courses/course-detail?course_id=course-v1:DLI+S-FX-15+V1)，
 如果有時間也推薦大家自行上網學習。
 
-<img src="/static/images/2024/LLM/LangChain.png" width="200"/>
+<img src="/static/images/blog/2024/LLM/LangChain.png" width="200"/>
 
 在實作之前，我們可以先來了解什麼是 [LangChain](https://python.langchain.com/docs/introduction/)。
 LangChain 是專門用來開發 LLM 應用程式的框架，整合各種 model、retrieval、agent 模組，對於開發 RAG agent 非常有幫助。
@@ -316,8 +316,8 @@ demo.launch(debug=True, share=True, show_api=False)
 demo.close()
 ```
 
-<img src="/static/images/2024/LLM/RAG-agent1.png" style={{margin:'auto'}}/>
-<img src="/static/images/2024/LLM/RAG-agent2.png" style={{margin:'auto'}}/>
+<img src="/static/images/blog/2024/LLM/RAG-agent1.png" style={{margin:'auto'}}/>
+<img src="/static/images/blog/2024/LLM/RAG-agent2.png" style={{margin:'auto'}}/>
 
 這樣就可以快速打造我們的 RAG 應用。
 當我們提問「Tell me about "Mistral 7B"」時，系統會檢索論文並還原出 Github 跟網頁連結。

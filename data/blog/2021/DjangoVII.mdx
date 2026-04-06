@@ -31,7 +31,7 @@ $ sudo service apache2 start # <-- 啟動 Apache server
 成功啟動後，可以在 [http://localhost/](http://localhost/) 看到 Apache 的預設頁面。
 這邊要注意的是，mod_wsgi 為 Apache2 中與 Django wsgi 溝通的模組，需要確保兩邊 Python 版本一致。
 
-![](/static/images/2021/Django/apache.png)
+![](/static/images/blog/2021/Django/apache.png)
 
 接著我們新增相關設定至 `/etc/apache2/sites-available/000-default.conf`：
 ```
@@ -63,7 +63,7 @@ WSGIScriptAlias 會將整個網站指定至某個 URL（此處預設為 `/`）�
 $ sudo service apache2 reload # <-- 重載 Apache 設定
 ```
 
-![](/static/images/2021/Django/mysite.jpg)
+![](/static/images/blog/2021/Django/mysite.jpg)
 
 ### 開發與除錯
 還記得在第三章最後我們曾提到過 404 頁面嗎？
@@ -106,7 +106,7 @@ $ touch /mysite/mysite/wsgi.py # <-- 更新時間戳記
 
 >Host, run, and code Python in the cloud!
 
-![](/static/images/2021/Django/pythonanywhere.png)
+![](/static/images/blog/2021/Django/pythonanywhere.png)
 
 Pythonanywhere 是一個專為 Python 環境打造的雲端環境，其免費方案有每天約 100s 的 CPU 運行時間，以及 512 MB 的用量限制，非常適合我們做一些小型的程式開發或網站測試。
 
@@ -114,11 +114,11 @@ Pythonanywhere 是一個專為 Python 環境打造的雲端環境，其免費方
 
 我們首先到 Web 區域，按下「 Add a new web app 」，在目前方案中，只有第一個網站是免費的。我們依照提示選擇 Web framework，在這裡可以直接選擇「 Django 」，或是選擇最下面的「 Manual configuration 」，這樣就可以自行設定想要的版本。
 
-![](/static/images/2021/Django/pythonanywhere-setting.png)
+![](/static/images/blog/2021/Django/pythonanywhere-setting.png)
 
 選擇好 Python 版本後按下確認，就會自行用帳號 ID 建立網站；點選進入 Pythonanywhere 給的網址，應該可以順利看到以下頁面。請注意免費版網站每三個月沒使用就會自動下線，需要自己上來延續方案。
 
-![](/static/images/2021/Django/pythonanywhere-hello-world.png)
+![](/static/images/blog/2021/Django/pythonanywhere-hello-world.png)
 
 接著我們開始部署我們的 Django 網站。首先進入「 Consoles 」區域，點選並建立我們的 bash shell，然後按照第一章的教學：建立虛擬環境、安裝 Django、建立專案與 APP。
 ``` bash
@@ -229,7 +229,7 @@ $ heroku open
 ```
 我們可以看到，雖然 static files 有正確顯示，media files 卻讀取失敗。這是因為 Heroku \<免費版> 不支援媒體上傳與儲存功能，相關討論可以參考 [這篇文章](https://stackoverflow.com/questions/59114717/imagesmedia-not-displaying-on-django-heroku-server)，目前只能暫時透過第三方服務來應對。
 
-![](/static/images/2021/Django/heroku.jpg)
+![](/static/images/blog/2021/Django/heroku.jpg)
 
 最後，先前的資料庫是放在 db.sqlite3，我們還可以改成 Heroku 自己的資料庫。請在 settings.py 中增加下面的內容：
 ``` python
@@ -265,7 +265,7 @@ $ heroku run python manage.py syncdb
 
 ### Mezzanine CMS
 
-![](/static/images/2021/Django/mezzanine.png)
+![](/static/images/blog/2021/Django/mezzanine.png)
 
 > Mezzanine is a powerful, consistent, and flexible content management platform.
 
@@ -307,11 +307,11 @@ Quit the server with CONTROL-C.
 ```
 進入 http://127.0.0.1:8000/ 畫面如下：
 
-![](/static/images/2021/Django/mezzanine-home.png)
+![](/static/images/blog/2021/Django/mezzanine-home.png)
 
 我們進入 admin 介面可以看到非常類似 Wordpress 的 dashboard，除了基本的網站與用戶，Mezzanine 還幫我們建立了部落格文章區塊，對於想快速使用的人來說非常方便。
 
-![](/static/images/2021/Django/mezzanine-dashboard.png)
+![](/static/images/blog/2021/Django/mezzanine-dashboard.png)
 
 然而，原本的介面稍微有些陽春，我們可以到它的 [Github](https://github.com/stephenmcd/mezzanine) 上，點選介紹中的 [Free Themes](https://github.com/thecodinghouse/mezzanine-themes) ，就可以下載四個現成的佈景主題 (flat/moderna/nova/solid) 。下載完後，按照說明文件加入 APP 到 settings.py 中便可以順利使用。
 
@@ -327,4 +327,4 @@ INSTALLED_APPS = (
 )
 ```
 結果呈現如下，大家可以自行嘗試。
-![](/static/images/2021/Django/mezzanine-theme.png)
+![](/static/images/blog/2021/Django/mezzanine-theme.png)

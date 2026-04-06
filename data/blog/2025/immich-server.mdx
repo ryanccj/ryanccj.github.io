@@ -6,7 +6,7 @@ draft: false
 summary: '本篇主要分享固定 IP 申請到 Immich 相簿伺服器的架設過程，並提供一些常見問題的解答'
 ---
 
-<img src="/static/images/2025/immich-server/cover.png" style={{margin:'auto'}}/>
+<img src="/static/images/blog/2025/immich-server/cover.png" style={{margin:'auto'}}/>
 <center><small>[Immich](https://immich.app) 是開源的相簿伺服器軟體，支援網頁版與手機 APP，綜合體驗非常優秀</small></center>
 
 ## 前言
@@ -35,14 +35,14 @@ IPv4 是有限的，無法隨意取得，所幸中華電信本身就有免費提
 我們首先會需要從網站或手機 APP 登入當初申辦家中寬頻服務的帳號，接著找到「[HiNet非固定制固定IP申請](https://123.cht.com.tw/HiNetStaticIp)」，並選取「1個固定IP + 7個動態IP」方案。
 記得填寫聯絡 email，過不久中華電信就會寄來一封確認信（我是直接被寄到垃圾信箱內），裡面就會有你的 IP 位址跟設定方式。
 
-![](/static/images/2025/immich-server/HiNet_static_IP.png)
+![](/static/images/blog/2025/immich-server/HiNet_static_IP.png)
 
 網路上許多教學文都需要登入中華電信的數據機，還需要自行揣摩神奇的帳密（個人測試，帳密與網路上常見的數據機型號+MAC後四碼不符合，所以這條路不一定可行）。
 但如果你跟我一樣是透過另一台路由器來連接伺服器主機的話，就可以直接在自己的路由器上作設定。
 以我家為例，我的中華電信數據機放在三樓，但是我在二樓另外架設一台 TP-Link 路由器作為一、二樓的無線基地台，然後將電腦以有線的方式連接到這台路由器。
 當我在瀏覽器輸入 http://192.168.0.1 ，連到的就會是 TP-Link 路由器的管理介面，就可以直接在這裡設定固定 IP。
 
-![](/static/images/2025/immich-server/PPPoE.png)
+![](/static/images/blog/2025/immich-server/PPPoE.png)
 
 根據官方信件，選擇以 PPPoE 方式連線，並將自己的 HN 用戶識別碼與 HiNet 域名組合成帳號。
 密碼在信中完全沒有提及，需要 **自行致電中華電信客服** (0800-080-123 或手機直撥 123)，由客服協助您設定新密碼。
@@ -107,7 +107,7 @@ Network Address Translation (NAT) 是一種網路地址轉換技術，可以讓�
 這麼做的好處是可以讓我們的伺服器在內網中運行，而不需要直接暴露在公共網路上。
 除了可以提高安全性，也可以讓同一組 IP 映射到更多內網設備（例如 NAS）。
 
-![](/static/images/2025/immich-server/NAT.png)
+![](/static/images/blog/2025/immich-server/NAT.png)
 
 以 TP-Link 為例，進入網路進階設定後，找到「NAT 導向」、「虛擬伺服器」，就可以設定防火牆內外的轉發規則。
 在上圖中，我將伺服器內網 IP 固定為 192.168.XX.XX（路由器與伺服器兩邊都需要作設定），並新增幾個我需要的服務。
@@ -129,7 +129,7 @@ Virtual Private Network (VPN) 可以讓我們在公共網路上建立一個安�
 一樣以 TP-Link 為例，在網路進階設定中找到「VPN 伺服器」，生成憑證並匯出設定檔即可，可以參考 [這份教學](https://www.tp-link.com/tw/support/faq/1544/)。
 如果希望在用 VPN 連線時也可以順便上網，需要勾選 **網際網路和家庭網路**。
 
-![](/static/images/2025/immich-server/VPN.png)
+![](/static/images/blog/2025/immich-server/VPN.png)
 
 匯出後，我們需要在電腦或手機安裝 [OpenVPN](https://openvpn.net/) 客戶端，然後將設定檔匯入即可。
 平常若要連到家中伺服器，需要多一個動作，先連上 OpenVPN，然後在瀏覽器輸入 http://192.168.XX.XX:2283 ，就可以安全地存取內網服務了。
@@ -146,7 +146,7 @@ Virtual Private Network (VPN) 可以讓我們在公共網路上建立一個安�
 4. **如何在本地端存取 Immich 的資料？**
     - Immich 的資料儲存在 `UPLOAD_LOCATION` 中，然而路徑與檔名是用 hash 加密過的，無法直接透過檔案瀏覽器找到特定檔案。我認為把它當作一個雲端相簿服務來使用就好。
     - 如果真的想要保持原有資料結構，可以在 `docker-compose.yml` 中設定 volumes，就可以在 APP 中掃描資料夾，詳情請參考 [官方文件](https://main.preview.immich.app/docs/features/libraries)。
-    ![](/static/images/2025/immich-server/external_library.png)
+    ![](/static/images/blog/2025/immich-server/external_library.png)
 5. **如何備份與還原 Immich 的資料？**
     - 承上題，一般檔案路徑儲存在 PostgreSQL 資料庫內，萬不可遺失。Immich 每天會自動備份資料表到 `UPLOAD_LOCATION/backups` 中，基本上不用太擔心。
     若要重新架設服務，可以參考這份 [官方文件](https://main.preview.immich.app/docs/administration/backup-and-restore/)，手動將資料庫備份檔更新上去。

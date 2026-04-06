@@ -60,11 +60,11 @@ Starting development server at http://127.0.0.1:8000/
 Quit the server with CONTROL-C.
 ```
 
-![](/static/images/2021/Django/runserver.png)
+![](/static/images/blog/2021/Django/runserver.png)
 
 終端機會提示你伺服器已經啟動，以及一些 migrations 尚未執行（暫時不用理它）。只要按照提示，開啟瀏覽器並輸入 http://127.0.0.1:8000/ 或是 http://localhost:8000/ ，就會看到你的第一個網頁畫面。
 
-![](/static/images/2021/Django/first-page.png)
+![](/static/images/blog/2021/Django/first-page.png)
 
 接著，我們來建立第一個 app，你可以簡單的將 app 理解成一個網站。換句話說，這個專案可以同時管理很多網站。
 ``` bash
@@ -207,7 +207,7 @@ def hello_world(request):
 ```
 這裡，我們利用 render() 函數來渲染模板，利用 locals() 函數來打包所有變數。改完後結果如下：
 
-![](/static/images/2021/Django/first-website.png)
+![](/static/images/blog/2021/Django/first-website.png)
 
 美化過的頁面出來了，可以開始設計網頁了～等等！我們還必須學會最後一個東西，那就是 **「後端資料庫」**。
 
@@ -264,7 +264,7 @@ admin.site.register(Post, PostAdmin) #註冊Post model
 ```
 啟動server後，進入 http://127.0.0.1:8000/admin ，便可以看到後台登入介面。輸入剛剛註冊過的管裡員帳號，就可以看到精美的資料庫頁面。
 
-![](/static/images/2021/Django/admin.png)
+![](/static/images/blog/2021/Django/admin.png)
 
 為了練習方便，我們先在這裡建立幾篇貼文。完成後，我們要讓前端能夠順利看到剛剛寫好的文章，必須重新設定 views 與 templates。
 
@@ -312,6 +312,6 @@ urlpatterns = [
 ```
 然後就可以進入 http://127.0.0.1:8000/post ，看到剛剛的網頁與文章。
 
-![](/static/images/2021/Django/first-blog.png)
+![](/static/images/blog/2021/Django/first-blog.png)
 
 透過以上操作，大家應該可以初步理解 Django 的運作流程。Django 透過 Model、Template、View 形成模組化的 MTV 架構，分別處理不同的功能，讓網站開發變得相當有條理。

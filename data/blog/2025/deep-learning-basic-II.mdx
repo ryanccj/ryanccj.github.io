@@ -6,7 +6,7 @@ draft: false
 summary: 'Deep Learning 系列文第二章，著重在影像辨識的技術原理'
 ---
 
-<img src="/static/images/2025/deep-learning-basic/ch2/cover.png" style={{margin:'auto'}}/>
+<img src="/static/images/blog/2025/deep-learning-basic/ch2/cover.png" style={{margin:'auto'}}/>
 <center><small>電腦視覺有豐富的應用：物件偵測、文字辨識、醫療檢測、圖像分割等 [^30]</small></center>
 [^30]: Viso.ai, "The 100 most popular computer vision applications," URL: https://viso.ai/applications/computer-vision-applications/
 
@@ -47,7 +47,7 @@ summary: 'Deep Learning 系列文第二章，著重在影像辨識的技術原�
 [^3]: Lowe, David G. "Object recognition from local scale-invariant features." Proceedings of the seventh IEEE international conference on computer vision. Vol. 2. Ieee, 1999.
 [^4]: Dalal, Navneet, and Bill Triggs. "Histograms of oriented gradients for human detection." 2005 IEEE computer society conference on computer vision and pattern recognition (CVPR'05). Vol. 1. Ieee, 2005.
 
-<img src="/static/images/2025/deep-learning-basic/ch2/AlexNet.png" style={{margin:'auto'}}/>
+<img src="/static/images/blog/2025/deep-learning-basic/ch2/AlexNet.png" style={{margin:'auto'}}/>
 <center><small>Architecture of AlexNet (2012). [^5]</small></center>
 [^5]: Alex Krizhevsky, Ilya Sutskever, and Geoffrey E. Hinton. "Imagenet classification with deep convolutional neural networks." Advances in neural information processing systems 25 (2012).
 
@@ -63,7 +63,7 @@ summary: 'Deep Learning 系列文第二章，著重在影像辨識的技術原�
 以下圖為例，對於一個 3x3 的影像，使用 2x2 的濾鏡 `[[0, 1], [2, 3]]` 進行卷積運算，假設步長 (stride) 為 1，計算後得到一個 2x2 的全新特徵圖 (feature map) `[[25, 31], [43, 49]]`。
 這麼做就相當於透過濾鏡權重來簡化原始圖像，不直接使用密集層 (dense layer) 來處理每個像素，避免過度稀疏的資訊造成模型訓練失敗。
 
-<img src="/static/images/2025/deep-learning-basic/ch2/convolution.png" style={{margin:'auto'}}/>
+<img src="/static/images/blog/2025/deep-learning-basic/ch2/convolution.png" style={{margin:'auto'}}/>
 <center><small>卷積的計算過程 [^6]</small></center>
 
 [^6]: Paddle Org., "零基礎實踐深度學習 - 4.1 常用的基礎網路模塊", URL: https://www.paddlepaddle.org.cn/tutorials/projectdetail/3493103
@@ -95,7 +95,7 @@ conv = tf.keras.layers.Conv2D(
 ...
 ```
 
-![](/static/images/2025/deep-learning-basic/ch2/example2-1.png)
+![](/static/images/blog/2025/deep-learning-basic/ch2/example2-1.png)
 
 另一個常見的案例是邊緣偵測，我們可以透過一個 3x3 Sobel X 濾鏡 `[[-1, 0, 1], [-2, 0, 2], [-1, 0, 1]]`，來尋找影像中劇烈的橫向明暗變化。
 在這個案例中我們一次處理 RGB 三個通道 (channel)，並且將濾鏡複製到每個通道上。
@@ -120,13 +120,13 @@ conv = tf.keras.layers.Conv2D(
 ...
 ```
 
-![](/static/images/2025/deep-learning-basic/ch2/example2-2.png)
+![](/static/images/blog/2025/deep-learning-basic/ch2/example2-2.png)
 
 使用卷積來掃描圖片，會將原始圖片轉變為一個尺寸稍小的特徵圖 $ W_{out} = (W_{in} - W_{kernel}) / 2 + 1 $。
 如果想要讓特徵圖與原始尺寸一致，我們會在圖片四周加上 padding（通常是用 0），這樣可以避免特徵圖尺寸過小。
 最後我們還可以加上池化層，常見平均池化 (average pooling) 與最大池化 (max pooling)，也就是對窗口內的元素取最平均值或最大值，類似於將影像平滑化或加強對比，特別是後者常用於進一步提取特徵與縮小特徵圖的尺寸。
 
-<img src="/static/images/2025/deep-learning-basic/ch2/pooling.jpg" style={{margin:'auto'}} width='600'/>
+<img src="/static/images/blog/2025/deep-learning-basic/ch2/pooling.jpg" style={{margin:'auto'}} width='600'/>
 <center><small>池化的計算過程 [^6]</small></center>
 
 有了上述知識，我們終於可以看懂 AlexNet 的架構。
@@ -196,13 +196,13 @@ history = model.fit(
 如果是使用 [Google Colab](https://colab.google) 的 T4 GPU 來執行，莫約過個幾分鐘就可以訓練完成了。
 預測結果如下呈現，可見整體表現不錯，但依舊存在少量錯誤辨識錯誤。
 
-![](/static/images/2025/deep-learning-basic/ch2/cifar10-result.png)
+![](/static/images/blog/2025/deep-learning-basic/ch2/cifar10-result.png)
 
 如果想要有效解決像 ImageNet 這種等級的問題，就需要更大更複雜的神經網路，例如 **VGGNet** [^7]（16 層）、**GoogLeNet** [^8]（22 層）、**ResNet** [^9]（152 層）等。
 ResNet 比起前幾個神經網路，比較特別的是引入了 **殘差模組 (residual module)** 的概念，透過跳接的方式將輸入直接拉到後面幾層的輸出，避免過深的網路導致梯度消失。
 後續幾個著名模型也都採用這個概念，例如 Google **InceptionResNet** [^10]。
 
-<img src="/static/images/2025/deep-learning-basic/ch2/residual_module.png" style={{margin:'auto'}} width='600'/>
+<img src="/static/images/blog/2025/deep-learning-basic/ch2/residual_module.png" style={{margin:'auto'}} width='600'/>
 <center><small>Basic Residual Block (left) and Bottleneck Block (right) in ResNet. [^9]</small></center>
 
 [^7]: Simonyan, Karen, and Andrew Zisserman. "Very deep convolutional networks for large-scale image recognition." arXiv preprint arXiv:1409.1556 (2014).
@@ -292,14 +292,14 @@ for layer in conv_base.layers:
 也就是將兩者的交集面積除以聯集面積，就可以得出每個錨框的 IoU 分數，以此為依據去選定物體的最佳位置。
 $$ \mathrm{IoU} = \frac{A \cap B}{A \cup B} $$
 
-<img src="/static/images/2025/deep-learning-basic/ch2/cat-bbox.jpg" style={{margin:'auto'}} width='500'/>
+<img src="/static/images/blog/2025/deep-learning-basic/ch2/cat-bbox.jpg" style={{margin:'auto'}} width='500'/>
 
 我們不難發現，關鍵問題是如何找出好的 anchor box，才不會陷入窮舉的地獄。
 這個找出 anchor box 的動作又稱作 region proposal，以此為基礎發展出第一個經典物件偵測模型 R-CNN [^11]。
 R-CNN 會使用 selective search 先依據影像的顏色與紋理相似度，計算出約 2000 個 anchor box，
 再利用 AlexNet 當作 backbone 做特徵擷取和分類，稱作 two-stage 的物件偵測。
 
-<img src="/static/images/2025/deep-learning-basic/ch2/R-CNN.jpg" style={{margin:'auto'}}/>
+<img src="/static/images/blog/2025/deep-learning-basic/ch2/R-CNN.jpg" style={{margin:'auto'}}/>
 <center><small>The architecture of R-CNN [^11]</small></center>
 
 這個作法雖然效果良好，如果面對大量的 regions，每一個都必須丟進去 CNN 做運算，訓練過程複雜且耗時甚巨。
@@ -330,7 +330,7 @@ $$ b_h = p_h * e^{t_h} $$
 可以理解為若網格內不存在物體，信心分數的正解就會是 0，反之正解就會是該物體的 IoU，物體類別則可以用 one-hot encoding 來表示其機率。
 有了以上資訊，就可以計算總損失值 **$$ Loss = loss_{box} + loss_{obj} + loss_{cls} $$**。
 
-![](/static/images/2025/deep-learning-basic/ch2/YOLO.jpg)
+![](/static/images/blog/2025/deep-learning-basic/ch2/YOLO.jpg)
 
 最終模型輸出的維度 (tensor) 將會是 SxS x (Bx5 + C)，其中 B 是每個網格要預測的 bounding box 數量，
 5 是 $(t_x,\;t_y,\;t_w,\;t_h,\;confidence\;score)$，C 是物體的類別數量。
@@ -339,7 +339,7 @@ $$ b_h = p_h * e^{t_h} $$
 再透過 **Non-Maximum Suppression (NMS)**，將所有相鄰的檢測框合併成唯一。
 具體方式是先依據信心分數來排序檢測框，再彼此作 IoU 計算，移除過度相似的框 (eg. IoU > 0.5)，剩下就會是信心分數最高的獨立檢測框。
 
-![](/static/images/2025/deep-learning-basic/ch2/bbox.png)
+![](/static/images/blog/2025/deep-learning-basic/ch2/bbox.png)
 
 效果如以下影片 (2018)，可見其辨識物體的能力非常出色。
 
@@ -376,7 +376,7 @@ results = model.predict(source=image_rgb)
 result_image = results[0].plot()
 ```
 該模型在 7.2ms 內就完成推論 (confidence score = 0.89)，可見其對於常見物體非常快速準確，適合用在邊緣部署跟即時偵測（例如人臉、車流辨識）。
-<img src="/static/images/2025/deep-learning-basic/ch2/object_prediction.jpg" style={{margin:'auto'}} width='500'/>
+<img src="/static/images/blog/2025/deep-learning-basic/ch2/object_prediction.jpg" style={{margin:'auto'}} width='500'/>
 
 ## 圖像分割
 在上面的範例中，我們已經可以大致框選出物體的位置，然而對於更專業的應用（例如醫療影像、工業瑕疵檢測、物體去背等），只有 bounding box 顯然是不夠的。
@@ -392,7 +392,7 @@ PASCAL (Pattern Analysis, Statistical Modelling and Computational Learning) 是�
 有鑑於此，2014 年 Microsoft 推出了 [COCO (Common Objects in Context)](https://cocodataset.org/) 資料集 [^15]，針對不同物體有更精確的標記，
 這種分割方式又稱作 **實例分割 (Instance Segmentation)**。
 
-<img src="/static/images/2025/deep-learning-basic/ch2/MS-COCO.jpg" style={{margin:'auto'}}/>
+<img src="/static/images/blog/2025/deep-learning-basic/ch2/MS-COCO.jpg" style={{margin:'auto'}}/>
 <center><small>Classification, detection, semantic and instance segmentation in MS-COCO. [^16]</small></center>
 
 [^15]: Tsung-Yi Lin, et al. "Microsoft coco: Common objects in context." European conference on computer vision. Cham: Springer International Publishing, 2014.
@@ -406,8 +406,8 @@ PASCAL (Pattern Analysis, Statistical Modelling and Computational Learning) 是�
 這種方式類似於 stride = 1/2 的卷積運算，所以又稱作分數步長卷積 (fractionally strided convolution)。
 
 <div style={{textAlign:'center'}}>
-    <img src="/static/images/2025/deep-learning-basic/ch2/deconv-padding.gif" width='252' class='inline-block' style={{margin:'auto'}}/>
-    <img src="/static/images/2025/deep-learning-basic/ch2/deconv-dilation.gif" width='280' class='inline-block' style={{margin:'auto', padding:15}}/>
+    <img src="/static/images/blog/2025/deep-learning-basic/ch2/deconv-padding.gif" width='252' className='inline-block' style={{margin:'auto'}}/>
+    <img src="/static/images/blog/2025/deep-learning-basic/ch2/deconv-dilation.gif" width='280' className='inline-block' style={{margin:'auto', padding:15}}/>
 </div>
 <center><small>不同的上取樣方式：四周補零（左圖）與像素之間補零（右圖），藍色為輸入綠色為輸出 [^18]</small></center>
 
@@ -421,7 +421,7 @@ PASCAL (Pattern Analysis, Statistical Modelling and Computational Learning) 是�
 後來有許多基於 U-Net 的衍伸模型，例如修改 backbone 為 ResNet，或是加入 attention 機制等。
 2021 年 Nvidia 發表論文 [^20]，認為只要稍微修改一下 U-Net 的 loss 計算方式，就可以有相當好的語意分割效果。
 
-<img src="/static/images/2025/deep-learning-basic/ch2/U-Net.png" style={{margin:'auto'}}/>
+<img src="/static/images/blog/2025/deep-learning-basic/ch2/U-Net.png" style={{margin:'auto'}}/>
 <center><small>U-Net Architecture [^19]</small></center>
 
 [^19]: Olaf Ronneberger, Philipp Fischer, and Thomas Brox. "U-net: Convolutional networks for biomedical image segmentation." International Conference on Medical image computing and computer-assisted intervention. Cham: Springer international publishing, 2015.
@@ -442,7 +442,7 @@ PASCAL (Pattern Analysis, Statistical Modelling and Computational Learning) 是�
 還記得先前主打快速預測的 YOLO 嗎？YOLO 之父 Joseph Redmon 在 YOLOv3 文末就曾感嘆：[^24]
 > Boxes are stupid anyway though, I’m probably a true believer in masks except I can’t get YOLO to learn them.
 
-<img src="/static/images/2025/deep-learning-basic/ch2/YOLACT.png" style={{margin:'auto'}}/>
+<img src="/static/images/blog/2025/deep-learning-basic/ch2/YOLACT.png" style={{margin:'auto'}}/>
 <center><small>YOLACT Architecture [^25]</small></center>
 
 這個問題在 YOLACT (You Only Look At Coefficients) [^25] 得到解決。
@@ -471,7 +471,7 @@ image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 results = model.predict(source=image_rgb, task='segment')
 result_image = results[0].plot()
 ```
-<img src="/static/images/2025/deep-learning-basic/ch2/mask_prediction.jpg" style={{margin:'auto'}} width='500'/>
+<img src="/static/images/blog/2025/deep-learning-basic/ch2/mask_prediction.jpg" style={{margin:'auto'}} width='500'/>
 
 ## 結語
 藉由卷積神經網路，電腦視覺成為人工智慧在過去十年的黃金應用。

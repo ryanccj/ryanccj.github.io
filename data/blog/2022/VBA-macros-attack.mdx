@@ -5,7 +5,7 @@ tags: ['Web']
 draft: false
 summary: '簡介巨集病毒的歷史，並透過實作來探討巨集病毒的威力'
 ---
-![](/static/images/2022/VBA-macros-attack/title.jpg)
+![](/static/images/blog/2022/VBA-macros-attack/title.jpg)
 
 > VBA Macros are still used a lot to deliver malware today, simply because it works! 
 > Bad guys and red teamers are very creative with tricks to obfuscate code.
@@ -31,7 +31,7 @@ VBA 可以訪問許多系統函式並支援 **文件打開時自動執行巨集*
 台灣最有名的應該是 1996 年的 Taiwan No.1 病毒，每月 13 號跳出來讓你算數學，算錯便關閉你的 Word 應用程式。
 其他類似的還有猜拳病毒、釣魚台病毒等，有些屬於惡作劇病毒，有些則是真正會傷害你的資產，例如格式化硬碟資料。
 
-<center><img src='/static/images/2022/VBA-macros-attack/Taiwan-no1.png' width='350' /></center>
+<center><img src='/static/images/blog/2022/VBA-macros-attack/Taiwan-no1.png' width='350' /></center>
 
 因為病毒猖獗，到了 Office 2000/XP/2003 的年代，Microsoft 調整了策略，讓未被認證的巨集功能都被預設為「禁用」，至此正式進入巨集病毒的寒冬。
 這樣的狀況持續到 2014 年，Microsoft 再次調整策略，當偵測到巨集功能時，會跳出一個「啟用內容 (Enable Content)」的按鍵，讓巨集病毒重回江湖，Office 2010/2013/2016/365 皆有受影響。
@@ -55,7 +55,7 @@ FTCODE 會掃描電腦中的文件和影音，將其加密為帶 .FTCODE 副檔�
 
 ## 巨集病毒的攻防
 
-<center><img src='/static/images/2022/VBA-macros-attack/VBA.png' width='400' /></center>
+<center><img src='/static/images/blog/2022/VBA-macros-attack/VBA.png' width='400' /></center>
 
 VBA 巨集作為 Office 的批量處理工具，可以被拿來自動執行特定指令。
 儘管我們可以直接在 VBA 裡撰寫惡意程式，但最常見的還是作為跳板來下載某些更加複雜的病毒。
@@ -78,10 +78,10 @@ Read-only 模式不需要用戶輸入密碼，且 Microsoft Office 不會生成�
 
 [^7]: VelvetSweatshop Technique Used by Attack Campaign to Deliver LimeRAT: https://www.tripwire.com/state-of-security/velvetsweatshop-technique-used-by-attack-campaign-to-deliver-limerat
 
-<center><img src='/static/images/2022/VBA-macros-attack/enable-macros.png' width='500' /></center>
+<center><img src='/static/images/blog/2022/VBA-macros-attack/enable-macros.png' width='500' /></center>
 
-![](/static/images/2022/VBA-macros-attack/enable-editing.png)
-![](/static/images/2022/VBA-macros-attack/enable-content.png)
+![](/static/images/blog/2022/VBA-macros-attack/enable-editing.png)
+![](/static/images/blog/2022/VBA-macros-attack/enable-content.png)
 
 目前 Microsoft Office 針對文件保護已有諸多改進，就算開啟文件也不會直接啟用巨集功能，而是會出現 **「啟用編輯」** 與 **「啟用內容」** 兩種警告。
 這兩種警告相當於兩道鎖，兩道都必須靠使用者手動解除巨集才會開啟，所以最簡單的物理防禦辦法就是 `不要點啟用巨集` 。
@@ -90,7 +90,7 @@ Read-only 模式不需要用戶輸入密碼，且 Microsoft Office 不會生成�
 
 此外，Windows Defender 也會持續監視系統，並於開啟可疑檔案後自動掃描並移除。
 
-![](/static/images/2022/VBA-macros-attack/defender.png)
+![](/static/images/blog/2022/VBA-macros-attack/defender.png)
 
 ## 巨集病毒的實作測試
 
@@ -147,17 +147,17 @@ End Sub
 
 為了順利騙取受害這的信任，我們偽造一份叫做「5 月電信費用通知單」的郵件，內文與一般電信帳單幾乎一致，所有圖片連結皆可正常點選，僅替換帳單附件為我們偽造過的 Excel 檔案。
 
-![](/static/images/2022/VBA-macros-attack/demo.png)
+![](/static/images/blog/2022/VBA-macros-attack/demo.png)
 
 當使用者不慎下載並打開檔案，會看到空白頁面與以下圖片，告訴使用者因為版本問題，需要點選「啟用編輯」與「啟用內容」的按鈕。
 若使用者點擊按鈕，就會順利啟動 VBA，並於後端自動執行剛剛撰寫的巨集指令，下載 mooma.exe 並透過系統漏洞開啟後門。
 
-<center><img src='/static/images/2022/VBA-macros-attack/excel.png' width='500' /></center>
+<center><img src='/static/images/blog/2022/VBA-macros-attack/excel.png' width='500' /></center>
 
 這時我們切換回攻擊者的電腦，可以看到已順利奪取被攻擊者的 shell 執行權限。
 若輸入 ls 可以順利看到當前資料，代表可以進一步做更複雜的攻擊，例如竊取敏感資訊，或加密、勒索與刪除檔案。
 
-![](/static/images/2022/VBA-macros-attack/demo2.png)
+![](/static/images/blog/2022/VBA-macros-attack/demo2.png)
 
 ## 巨集病毒的防禦
 
@@ -173,7 +173,7 @@ End Sub
 ```bash
 $ olevba 五月份電子對帳單.xlsm
 ```
-<img src='/static/images/2022/VBA-macros-attack/olevba.png' width='600' />
+<img src='/static/images/blog/2022/VBA-macros-attack/olevba.png' width='600' />
 
 從以上訊息可以得知，這份文件存在一個自動執行的巨集，會從特定網址下載一份可疑檔案並自動執行。
 某些更進階的軟體甚至可以辨別攻擊細節，幫助使用者進一步分析與過濾。

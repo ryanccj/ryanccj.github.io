@@ -6,7 +6,7 @@ draft: false
 summary: 'Deep Learning 系列文第一章，著重在歷史背景和基本原理的介紹'
 ---
 
-<img src="/static/images/2025/deep-learning-basic/ch1/cover.jpg" style={{margin:'auto'}}/>
+<img src="/static/images/blog/2025/deep-learning-basic/ch1/cover.jpg" style={{margin:'auto'}}/>
 <center><small>A Brief History of AI with Deep Learning [^22]</small></center>
 [^22]: LM Po, "A Brief History of AI with Deep Learning," Medium, URL: https://medium.com/@lmpo/a-brief-history-of-ai-with-deep-learning-26f7948bc87b
 
@@ -38,7 +38,7 @@ summary: 'Deep Learning 系列文第一章，著重在歷史背景和基本原�
 這兩個學派持續爭論與消長，帶來大量的研究和討論，可謂 AI 早期的黃金時期。
 [^2]: Warren S. McCulloch, and Walter Pitts. "A logical calculus of the ideas immanent in nervous activity." The bulletin of mathematical biophysics 5 (1943): 115-133.
 
-<img src="/static/images/2025/deep-learning-basic/ch1/thinking-machine.jpg" style={{margin:'auto'}}/>
+<img src="/static/images/blog/2025/deep-learning-basic/ch1/thinking-machine.jpg" style={{margin:'auto'}}/>
 <center><small>兩大學派反應了思考的演繹 (hypothetical-deductive, 左圖) 和歸納 (inductive, 右圖) 機制。 [^3]</small></center>
 [^3]: Dominique Cardon, et al. "Neurons spike back: The Invention of Inductive Machines and the Artificial Intelligence Controversy." Réseaux : communication, technologie, société, 2018, n° 211 (5), pp.173.
 
@@ -48,7 +48,7 @@ summary: 'Deep Learning 系列文第一章，著重在歷史背景和基本原�
 他們於隔年提出 General Problem Solver 程式，透過分治法 (divide and conquer) 來解決各種問題，廣受推崇。
 [^4]: Alan Mathison Turing. "Computing Machinery and Intelligence", Mind, LIX (1950): 433–460.
 
-![](/static/images/2025/deep-learning-basic/ch1/Dartmouth_conference.jpg)
+![](/static/images/blog/2025/deep-learning-basic/ch1/Dartmouth_conference.jpg)
 
 在這個時期，符號主義是顯學，人們專注於在各個領域中建立知識的搜尋演算法。
 Marvin Minsky 更曾言：「Within a generation... the problem of creating "artificial intelligence" will substantially be solved.」
@@ -73,7 +73,7 @@ Marvin Minsky 更曾言：「Within a generation... the problem of creating "art
 [^6]: Yann LeCun, et al. "Backpropagation applied to handwritten zip code recognition." Neural computation 1.4 (1989): 541-551.
 [^7]: Yann LeCun, et al. "Gradient-based learning applied to document recognition." Proceedings of the IEEE 86.11 (1998): 2278-2324.
 
-<img src="/static/images/2025/deep-learning-basic/ch1/LeNet-5.png" style={{margin:'auto'}}/>
+<img src="/static/images/blog/2025/deep-learning-basic/ch1/LeNet-5.png" style={{margin:'auto'}}/>
 <center><small>Architecture of LeNet-5. [^7]</small></center>
 
 然而 CNN 有個問題，那就是計算太過複雜，當時的 CPU 難以負荷，導致其發展受限。
@@ -99,7 +99,7 @@ AlexNet 使用許多近代方法，例如使用 ReLU 激活函數、引入 dropo
 [^12]: Vaswani, Ashish, et al. "Attention is all you need." Advances in neural information processing systems 30 (2017): 5998-6008.
 [^13]: Tom B. Brown, et al. "Language models are few-shot learners." Advances in neural information processing systems 33 (2020): 1876-1901.
 
-<img src="/static/images/2025/deep-learning-basic/ch1/model_size.png" style={{margin:'auto', borderRadius:'10px'}}/>
+<img src="/static/images/blog/2025/deep-learning-basic/ch1/model_size.png" style={{margin:'auto', borderRadius:'10px'}}/>
 <center><small>除了少數 outliers (eg. DistilBERT)，語言模型的參數量自 Transformer 發表後開始以一年 10 倍的速度暴漲 [^14]</small></center>
 [^14]: Hugging Face, "How do Transformers work?", URL: https://huggingface.co/learn/nlp-course/chapter1/4
 
@@ -120,7 +120,7 @@ AlexNet 使用許多近代方法，例如使用 ReLU 激活函數、引入 dropo
 那究竟什麼是神經網路呢？為什麼它可以學習出人類難以定義的「規則」？我們需要先回到 1940 年代，也就是單層感知器的時代。
 所謂的感知器，其實就是模仿生物體的神經元，將輸入的訊號加總起來。一旦訊號的強度超過一定閾值，神經元就會被激活，
 
-<img src="/static/images/2025/deep-learning-basic/ch1/MP_neuron.jpg" style={{margin:'auto', borderRadius:'10px'}}/>
+<img src="/static/images/blog/2025/deep-learning-basic/ch1/MP_neuron.jpg" style={{margin:'auto', borderRadius:'10px'}}/>
 <center><small>McCulloch-Pitts Neuron Model (1943) [^2] [^17]</small></center>
 [^17]: LM Po, "The Evolution of Artificial Neurons", Medium, URL: https://medium.com/@lmpo/the-evolution-of-artificial-neurons-90619f224f63
 
@@ -134,7 +134,7 @@ AlexNet 使用許多近代方法，例如使用 ReLU 激活函數、引入 dropo
 以下表為例，將 $x_1$、$x_2$ 兩個參數作為輸入，並不存在一條斜直線可以在二維平面上將兩個類別分開；
 也就是不存在一個通解可以滿足所有輸入與輸出的配對，所以訓練過程永遠無法收斂。
 
-<img src="/static/images/2025/deep-learning-basic/ch1/XOR_problem.png" style={{margin:'auto', borderRadius:'10px'}}/>
+<img src="/static/images/blog/2025/deep-learning-basic/ch1/XOR_problem.png" style={{margin:'auto', borderRadius:'10px'}}/>
 <center><small>將單顆神經元的訓練結果繪製於二維平面，程式部分可以參考 [Github 連結](https://github.com/RyanCCJ/DL-basic/blob/master/notebook_1/perceptron.ipynb)</small></center>
 
 想要解決這個問題，我們就需要引入多層感知器 (MLP) 的概念。
@@ -180,7 +180,7 @@ $$ w_{t+1} = w_t - \eta \cdot \nabla E(w_t) $$
 目前最常見的方式是 adaptive momentum (Adam) [^19]，結合了自適應學習率與動量的概念。這些促進訓練效率的演算法又稱作 **優化器 (optimizer)**。
 [^19]: Diederik P. Kingma, and Jimmy Ba, "Adam: A method for stochastic optimization," arXiv preprint arXiv:1412.6980 (2014).
 
-<img src="/static/images/2025/deep-learning-basic/ch1/gradient_descent.gif" style={{margin:'auto', borderRadius:'10px'}} width='400'/>
+<img src="/static/images/blog/2025/deep-learning-basic/ch1/gradient_descent.gif" style={{margin:'auto', borderRadius:'10px'}} width='400'/>
 <center><small>optimizers on saddle point [^20]</small></center>
 [^20]: Sebastian Ruder, "An overview of gradient descent optimization algorithms." URL: https://www.ruder.io/optimizing-gradient-descent/
 
@@ -192,7 +192,7 @@ $$ w_{t+1} = w_t - \eta \cdot \nabla E(w_t) $$
 
 函數導數： $$ tanh'(x) = 1 - tanh^2(x),\quad \sigma'(x) = \sigma(x)(1 - \sigma(x)) $$
 
-![](/static/images/2025/deep-learning-basic/ch1/activation_function.png)
+![](/static/images/blog/2025/deep-learning-basic/ch1/activation_function.png)
 
 有了以上知識後，我們就可以開始計算神經網路的輸出與損失了。
 
@@ -200,7 +200,7 @@ $$ w_{t+1} = w_t - \eta \cdot \nabla E(w_t) $$
 
 首先考慮以下神經網路，包含 $X_1$、$X_2$ 兩個輸入項，以及 $G$、$F$ 兩顆神經元和其對應的 bias 輸入項。
 神經元 $F$ 的輸出即為預測值 $\hat{y}$，我們會與正解 $y$ 透過損失函數 $E$ 進行比對後計算出損失值 $e$。
-<img src="/static/images/2025/deep-learning-basic/ch1/MLP.png" style={{margin:'auto', borderRadius:'10px'}} width='600'/>
+<img src="/static/images/blog/2025/deep-learning-basic/ch1/MLP.png" style={{margin:'auto', borderRadius:'10px'}} width='600'/>
 <center><small>一個簡單的雙層神經網路示意圖</small></center>
 
 為了方便展示，我們讓神經元 $G$ 使用 tanh 作為其激活函數，$F$ 使用 sigmoid 作為激活函數。
@@ -260,8 +260,8 @@ MNIST 資料集 (Modified National Institute of Standards and Technology databas
 包含 60,000 筆訓練資料和 10,000 筆測試資料，皆標準化為 28\*28 pixel 的黑白圖片，方便訓練與測試模型。
 
 <div style={{textAlign:'center'}}>
-    <img src="/static/images/2025/deep-learning-basic/ch1/MNIST_samples.png" width='200' class='inline-block' style={{margin:'auto'}}/>
-    <iframe width="560" height="315" class='inline-block' 
+    <img src="/static/images/blog/2025/deep-learning-basic/ch1/MNIST_samples.png" width='200' className='inline-block' style={{margin:'auto'}}/>
+    <iframe width="560" height="315" className='inline-block' 
     style={{margin:'auto', padding:15}}
     src="https://www.youtube.com/embed/FwFduRA_L6Q?si=Z_CcBYxplHlfWL6n" 
     title="YouTube video player" frameBorder="0" 
@@ -394,7 +394,7 @@ Epoch 20/20
 
 我們可以透過 `matplotlib` 將訓練過程作圖，或使用 [TensorBoard](https://www.tensorflow.org/tensorboard) 等套件直接進行資料視覺化。
 圖中可以發現 training loss 從 0.05 逐步下降到 0.01，training accuracy 也從 0.7 上升到 0.95。在測試資料的部分，儘管略不及訓練資料，但也同步下降 loss 與提升 accuracy，代表整個訓練過程是成功的。
-![](/static/images/2025/deep-learning-basic/ch1/MNIST_training.png)
+![](/static/images/blog/2025/deep-learning-basic/ch1/MNIST_training.png)
 
 若我們將訓練完的模型，拿前五筆測試資料進行預測，可以看到模型經過最終 10 顆神經元的 sigmoid 函數後，會分別對 10 種類別進行預測，輸出一個介於  0-1 的機率陣列。
 我們一樣可以將預測結果視覺化，並取機率最高的標籤作為預測值。
@@ -407,7 +407,7 @@ array([[2.3932243e-03, 2.3173345e-03, 2.8411698e-02, 3.4776039e-02,
         ...
     ], dtype=float32)
 ```
-![](/static/images/2025/deep-learning-basic/ch1/MNIST_prediciton.png)
+![](/static/images/blog/2025/deep-learning-basic/ch1/MNIST_prediciton.png)
 
 最後，我們可以將訓練好的模型儲存成 HDF5 格式，未來可以直接將模型載入，就不需要重新訓練。
 下面可見新模型的評估結果跟先前訓練好的模型準確度基本一致。
@@ -456,7 +456,7 @@ $$ H(x) = \displaystyle\sum_{i=1}^{N} -p_ilog_2(p_i) $$
 換句話說，預測的不確定性越高，熵就越高。
 而 Cross Entropy 修改了 log 前那一項為 binary indicator (0 or 1)，讓模型只關注目標類別的機率，其他類別的 entropy 都會變成 0。這麼做可以讓模型往「正確」的方向收斂，而不單只是往「最低亂度」收斂。
 結果如下圖右，將所有資料的正解（紅色 y=1）上的點加總，就是 Cross Entropy 的和。
-![](/static/images/2025/deep-learning-basic/ch1/entropy.png)
+![](/static/images/blog/2025/deep-learning-basic/ch1/entropy.png)
 
 另外，在先前的範例程式中，我們使用十顆神經元搭配 $sigmoid()$ 激活函數作為輸出，其隱藏的風險是預測機率的總和不一定為 1。
 因為每顆神經元都獨立預測，可能會出現諸如 $[0.8, 0.1, 0.6]$ 這種預測結果，不符合物理上的直覺。
@@ -471,7 +471,7 @@ $$ Softmax(x_i) = \frac{e^{x_i}}{\sum_{i=1}^{N} e^{x_i}} $$
 有時候，當我們持續訓練模型的過程中，明明 training loss 持續下降， validation loss 卻遲遲無法下降，甚至開始上升，導致 accuracy 跟著下跌，這種現象又稱作 **過度擬合 (overfitting)**。
 過度擬合代表模型開始鑽牛角尖的去 fit 你的訓練資料，導致對新資料的能力無法泛化。
 這很可能是因為訓練資料集有某種明確特徵被抓出來，但是這個特徵並不通用於實際標準，導致模型學過頭「學錯了」。
-![](/static/images/2025/deep-learning-basic/ch1/overfitting.png)
+![](/static/images/blog/2025/deep-learning-basic/ch1/overfitting.png)
 
 要解決 overfitting，最直觀的辦法就是在 validation loss 開始上升前停止訓練，又稱作 **early stopping**。
 在 tensorflow 中可以使用 callback function 來設定 early stopping 跟自動儲存權重的策略。
@@ -510,7 +510,7 @@ L2 penalty: $$ \lambda \sum_{i=1}^{N} w_{i}^{2} $$
 
 下圖是在 [Tensorflow Playground](http://playground.tensorflow.org/#activation=relu&regularization=L1&batchSize=15&dataset=circle&regDataset=reg-plane&learningRate=0.01&regularizationRate=0.1&noise=0&networkShape=6,6&seed=0.50150&showTestData=false&discretize=false&percTrainData=50&x=true&y=true&xTimesY=true&xSquared=true&ySquared=true&cosX=false&sinX=true&cosY=false&sinY=true&collectStats=false&problem=classification&initZero=false&hideText=false) 搭配 L1 regularization 來訓練模型，可以發現不重要的權重都衰減至逼近 0，推薦自己操作看看。
 數學原理牽涉到拉格朗日乘數法，可以參考 [這篇文章](https://allen108108.github.io/blog/2019/10/22/L1%20,%20L2%20Regularization%20到底正則化了什麼%20_/)，礙於篇幅就不贅述。
-![](/static/images/2025/deep-learning-basic/ch1/L1_regularization.png)
+![](/static/images/blog/2025/deep-learning-basic/ch1/L1_regularization.png)
 
 既然提到權重衰減，那就不得不提到 **丟棄法 (dropout)** [^21]。
 Dropout 的概念是在每個 batch 的訓練週期中，隨機移除特定比例的神經元 (eg. 20%)，以避免模型依賴特定權重來學習特徵。

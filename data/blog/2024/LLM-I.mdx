@@ -50,7 +50,7 @@ ChatGPT 是由 OpenAI 所開發的人工智慧聊天機器人，雖說是聊天�
 可想而知，編碼器著重在文章的理解與分類，知名的模型像是 Google Bert (2018) [^3]；解碼器則著重在文本的生成，例如 OpenAI 的 GPT 模型 (2018) [^4]。
 更多說明可以參考 Hugging Face 的 [這篇文章](https://huggingface.co/learn/nlp-course/zh-TW/chapter1/4)。
 
-<img src="/static/images/2024/LLM/transformer.png" style={{borderRadius:'3%'}}/>
+<img src="/static/images/blog/2024/LLM/transformer.png" style={{borderRadius:'3%'}}/>
 
 [^2]: Ashish Vaswani, Noam Shazeer, Niki Parmar, et al., "Attention is all you need." Advances in Neural Information Processing Systems, 2017.
 [^3]: Jacob Devlin, Ming-Wei Chang, Kenton Lee, Kristina Toutanova, "Bert: Pre-training of deep bidirectional transformers for language understanding." arXiv preprint arXiv:1810.04805, 2018.
@@ -80,7 +80,7 @@ ChatGPT 是由 OpenAI 所開發的人工智慧聊天機器人，雖說是聊天�
 以 3%-4% 的價格就能獲得接近 GPT-4o 的能力（參考下圖），可說是相當划算。
 如果不想花錢，也可以參考這個 [Free ChatGPT](https://freechatgpt.chat) 專案，但身為第三方服務有諸多限制且不能保證穩定。
 
-![](/static/images/2024/LLM/GPT-benchmark.png)
+![](/static/images/blog/2024/LLM/GPT-benchmark.png)
 
 還有一種方式，那就是使用 Google 提供的 Gemini API，
 雖然有流量上限，但是對於負載不高的需求來說也是綽綽有餘。
@@ -92,7 +92,7 @@ ChatGPT 是由 OpenAI 所開發的人工智慧聊天機器人，雖說是聊天�
 同意服務條款後，在左上角 **Get API Key** 頁籤中選擇 **Create API Key in new project**，就會自動產生金鑰。
 如果無法直接在新專案中產生，也可以點選 **Create API Key in existing project**，從現有的 Google Cloud 專案中新增金鑰。
 
-![](/static/images/2024/LLM/Gemini-API.png)
+![](/static/images/blog/2024/LLM/Gemini-API.png)
 
 產生完畢後，將 API Key 複製並收好，等下會用到。如果不幸忘記，也可以隨時回到這個頁面重新複製。
 
@@ -119,7 +119,7 @@ LLM 之所以能做到輕鬆生成超長文章，是因為他把輸出視為一�
 > 例如在英文中，單一字母可能沒什麼意義，組合成單字才有含義。
 > 但是對於中文，單一文字可能就有同等的含義。
 > 實際在運算中，語言模型會把單字分割成無數個 token，再透過預測 token 來組合出文字與文章。 [(圖源)](https://platform.openai.com/tokenizer)
-> ![](/static/images/2024/LLM/token.png)
+> ![](/static/images/blog/2024/LLM/token.png)
 
 - **Temperature (0-1):** 決定輸出文字的機率分佈，越高的溫度就會讓機率分佈越平均，增加其他字被選中的機率。換句話說，增加溫度可以增加文章的「創意」程度。
 - **Top-K (1-N):** 從機率前 K 高的文字中做選擇，增加 K 也可以增加其他字被選中的機率。
@@ -202,8 +202,8 @@ with gr.Blocks() as demo:
 demo.launch()
 ```
 
-![](/static/images/2024/LLM/practice1-1-1.png)
-![](/static/images/2024/LLM/practice1-1-2.png)
+![](/static/images/blog/2024/LLM/practice1-1-1.png)
+![](/static/images/blog/2024/LLM/practice1-1-2.png)
 
 ### 多模態分析
 
@@ -212,7 +212,7 @@ demo.launch()
 這其實都是把「雪景」這個抽象概念提取重點，投射到不同維度適合的載體。
 反過來我們也可以將文字、影像、聲音做為輸入，訓練一個模型去理解並配對這三種描述方式。
 
-<img src="/static/images/2024/LLM/multimodal.png" width='400' style={{borderRadius:'3%'}}/>
+<img src="/static/images/blog/2024/LLM/multimodal.png" width='400' style={{borderRadius:'3%'}}/>
 
 前面曾經說過，文字由 token 所構成，影像則由像素 (pixel) 所構成。
 例如一個色彩深度 8bit 影像，代表可以用 2<sup>8</sup> = 256 種顏色來記錄色彩變化。
@@ -222,7 +222,7 @@ demo.launch()
 如果是聲音，我們則可以每隔一定時間記錄音訊，稱為取樣率 (sampling rate)。例如 22KHz 代表每秒鐘有 22,000 的取樣點。
 下面是 Google [WaveNet](https://deepmind.google/discover/blog/wavenet-a-generative-model-for-raw-audio/) 的動圖，
 可以觀察一段音訊是如何被記錄的。
-![](/static/images/2024/LLM/WaveNets.gif)
+![](/static/images/blog/2024/LLM/WaveNets.gif)
 
 這些可以同時處理多媒體輸入或輸出的模型，又被稱作多模態模型 (multimodal model)。
 以 OpenAI [CLIP](https://openai.com/index/clip/) 為例，
@@ -231,7 +231,7 @@ demo.launch()
 只要設計適當的 loss function 讓對應參數（藍色）越大越好、不對應的參數（灰色）越小越好，就可以將兩種表達方式在抽象空間內做連結。
 訓練好多模態空間後，就可以用對應的解碼器去生成我們想要的內容。
 
-<img src="/static/images/2024/LLM/CLIP.jpg" style={{margin:'auto', borderRadius:'3%'}}/>
+<img src="/static/images/blog/2024/LLM/CLIP.jpg" style={{margin:'auto', borderRadius:'3%'}}/>
 <center><small>Contrastive pre-training on OpenAI CLIP model. [^6]</small></center>
 
 [^6]: Alec Radford, Jong W. Kim, Chris Hallacy, et al. "Learning transferable visual models from natural language supervision." International conference on machine learning. PMLR, 2021.
@@ -240,7 +240,7 @@ Gemini 作為一個 multimodal model，除了純文字也可以選擇輸入圖�
 例如我準備一張數學公式的手寫圖片 `math_equation.jpg`（下圖），借助 LLM 多模態讀取資料與思考的能力，就可以進行數學公式的邏輯推理。
 我們也可以將這些影像辨識的問題延伸到說明書讀取、最佳化佈局等應用。
 
-<img src="/static/images/2024/LLM/math_equation.jpg" width='250'/>
+<img src="/static/images/blog/2024/LLM/math_equation.jpg" width='250'/>
 
 ```python
 file_path = 'math_equation.jpg'
@@ -269,7 +269,7 @@ with gr.Blocks() as demo:
     
 demo.launch()
 ```
-![](/static/images/2024/LLM/practice1-2-1.png)
+![](/static/images/blog/2024/LLM/practice1-2-1.png)
 
 至於影片，則可以看作無數張圖片的疊加。
 我們常聽到的幀數 (frame per second, FPS) 就使指每秒幾張圖片，例如 60fps 代表一秒鐘有 60 張圖片掃過去。
@@ -279,7 +279,7 @@ Gemini 目前支援最高 1hr 的影片輸入，但會將影片取樣壓縮至 1
 這裡我們使用一個路邊巴士與車輛的影片 `bus.mp4`，透過人工智慧強大的分析能力，不僅可以解讀影片內容，還可以從各種蛛絲馬跡（路標、車牌）推敲出影片拍攝的地點，非常厲害。
 
 <video width="550" controls>
-<source src="/static/images/2024/LLM/bus.mp4" type="video/mp4"/>
+<source src="/static/images/blog/2024/LLM/bus.mp4" type="video/mp4"/>
 Your browser does not support the video tag.
 </video>
 
@@ -321,7 +321,7 @@ with gr.Blocks() as demo:
 demo.launch()
 ```
 
-![](/static/images/2024/LLM/practice1-2-2.png)
+![](/static/images/blog/2024/LLM/practice1-2-2.png)
 
 ### 多媒體生成
 

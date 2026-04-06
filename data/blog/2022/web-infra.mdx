@@ -5,7 +5,7 @@ tags: ['Web']
 draft: false
 summary: 'Establishing a full-stack web architecture, including a web server, DNS server, database read-write separation, and more.'
 ---
-![](/static/images/2022/web-infra/title.jpg)
+![](/static/images/blog/2022/web-infra/title.jpg)
 
 2021 年末至 2022 年初，我們研究室與某科技公司進行為期數個月的產學合作計畫。
 我有幸參與其中某個專案，目標是協助該公司將原先建構在 Amazon Web Services (AWS) 上的內部網站轉移至該公司的伺服器上。
@@ -19,7 +19,7 @@ summary: 'Establishing a full-stack web architecture, including a web server, DN
 後端會與 mail server 和 PostgreSQL server 服務相連，並將資料庫做讀寫分離與自動備份。
 後續章節將進一步介紹各項目的實作細節。
 
-![](/static/images/2022/web-infra/overview.png)
+![](/static/images/blog/2022/web-infra/overview.png)
 
 ## CentOS Server
 
@@ -161,10 +161,10 @@ $ sudo systemctl restart postgresql-12 # 重啟 sql
 如果想直接使用 PostgreSQL 的 bin 指令，記得將路徑 /usr/pgsql-12/bin 加入系統的環境變數。
 
 - Master DataBase (write)
-![](/static/images/2022/web-infra/SQL-master.png)
+![](/static/images/blog/2022/web-infra/SQL-master.png)
 
 - Slave DataBase (read-only)
-![](/static/images/2022/web-infra/SQL-slave.png)
+![](/static/images/blog/2022/web-infra/SQL-slave.png)
 
 - **補充 (一)**
 ``` bash
@@ -183,7 +183,7 @@ $ sudo -iu postgres psql
 
 可以在 Client 端安裝 [pgAdmin](https://www.pgadmin.org/download/)，就可以利用 GUI 介面來操作遠端資料庫。
 
-![](/static/images/2022/web-infra/pgAdmin.png)
+![](/static/images/blog/2022/web-infra/pgAdmin.png)
 
 ## Web Server
 
@@ -353,10 +353,10 @@ $ sudo systemctl restart httpd   # 重啟 Apache
 ```
 
 An md5 hash of the URL will be created as the key used to store the data：
-![](/static/images/2022/web-infra/md5-hash.png)
+![](/static/images/blog/2022/web-infra/md5-hash.png)
 
 將 cache 資料以 hash 方式存取：
-![](/static/images/2022/web-infra/cache.png)
+![](/static/images/blog/2022/web-infra/cache.png)
 
 以下是 cache 的設定範例：
 ```txt
@@ -475,13 +475,13 @@ $ sudo crontab -e
 
 [^2]: [鳥哥 伺服器架設篇-CentOS 6.x：郵件伺服器](https://linux.vbird.org/linux_server/centos6/0380mail.php)
 
-<img src="/static/images/2022/web-infra/MDA.png" width='400' />
+<img src="/static/images/blog/2022/web-infra/MDA.png" width='400' />
 
 收發信件所使用的通訊協定是 **SMTP** (Simple Mail Transfer Protocol)，所以 MTA Server 就是 SMTP Server。
 
 郵件接收需要本地端 MUA 與 MTA 溝通，透過 MRA (Mail Retrieval Agent) 將郵件從 MTA 載下來。相關流程如下圖。
 
-<img src="/static/images/2022/web-infra/MRA.png" width='400' />
+<img src="/static/images/blog/2022/web-infra/MRA.png" width='400' />
 
 將信件下載到 MUA 所用的通訊協定是 **POP3** (Post Office Protocol)、**IMAP** (Internet Message Access Protocol) ，所以若要收信也需要 MRA Server。
 
@@ -538,7 +538,7 @@ Subject: Test          # 標題
 This is a test.        # 內文
 .                      # 結束符號
 ```
-<img src="/static/images/2022/web-infra/mail.png" width='400' />
+<img src="/static/images/blog/2022/web-infra/mail.png" width='400' />
 
 若 mail server 未經過驗證，可能會被視為垃圾郵件，要去垃圾信箱裡尋找。
 

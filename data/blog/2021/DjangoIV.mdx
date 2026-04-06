@@ -24,11 +24,11 @@ summary: 'Django 系列文：介紹資料庫的基本概念和使用方法，包
 
 資料庫 (Database, DB) 是一種系統化儲存資料的方法，他需要配合資料管理系統 (Database Management System, DBMS) 來存取資料，並利用結構化查詢語言 (Structured Query Language, SQL) 來快速搜尋我們要的資料。
 
-![](/static/images/2021/Django/DBMS.png)
+![](/static/images/blog/2021/Django/DBMS.png)
 
 在 Django 中預設的資料庫是 SQLite，相關資料都儲存在 db.sqlite3 中。我們可以利用 Django 內建的 admin 介面來進行資料增減等簡單操作，也可以透過第三方應用程式 ( 例如 [DB Browser](https://sqlitebrowser.org/) ) 來進一步做到如匯入 csv 檔案、資料欄位設定、主值設定等進階操作。
 
-![](/static/images/2021/Django/DB-browser.png)
+![](/static/images/blog/2021/Django/DB-browser.png)
 
 ### 使用 MySQL
 如果我們要開發大型專案，並且多人共用同一個資料庫，通常會使用 MySQL 等獨立資料庫伺服器來取代預設的 SQLite。
@@ -260,7 +260,7 @@ Please select a fix:
 
 這裡我們先新增幾個 user 與 tag ，上傳想要的封面照片，再使用廢文產生器生成相應的貼文。完成後結果如下圖。
 
-![](/static/images/2021/Django/add-post.png)
+![](/static/images/blog/2021/Django/add-post.png)
 
 我們將稍微調整 index.html 的排版，並加上作者暱稱與封面相片。注意照片讀取的部分是用 `{{ post.image.url }}` 。
 ``` html
@@ -386,8 +386,8 @@ urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 **( index.html )** http://localhost:8000/
 
-![](/static/images/2021/Django/final-index.jpg)
+![](/static/images/blog/2021/Django/final-index.jpg)
 
 **( post.html )** http://localhost:8000/post/iceland/
 
-![](/static/images/2021/Django/final-post.png)
+![](/static/images/blog/2021/Django/final-post.png)

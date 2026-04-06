@@ -5,7 +5,7 @@ tags: ['Circuit', 'Power']
 draft: False
 summary: 'Exploration of the conversion mechanism of the DC-DC converter in Energy Light Harvesting System'
 ---
-![](/static/images/2017/buck-converter/solar_panel.png)
+![](/static/images/blog/2017/buck-converter/solar_panel.png)
 
 ## 一、前言
 隨著光獵能系統的興起，為了有效的降低其輸出電壓，設計一個高效能的 DC-DC converter 便成為一個重要的議題。
@@ -22,7 +22,7 @@ Switching converter 的構造如圖 1-1 [^1]，可以簡化為一組直流輸入
 另外，在 closed-loop 的概念中，則是會額外加上一組迴授電路，用以檢驗其輸出是否達成標準，再進一步調整其 PWM 控制訊號。
 
 <center>
-    <img src='/static/images/2017/buck-converter/fig1-1.png' width='300' />
+    <img src='/static/images/blog/2017/buck-converter/fig1-1.png' width='300' />
     <small>圖 1-1 switching converter 簡圖</small>
 </center>
 
@@ -31,7 +31,7 @@ Switching converter 的構造如圖 1-1 [^1]，可以簡化為一組直流輸入
 利用訊號的輸入與 L、C 的搭配來達成各種電源轉換的目的。
 
 <center>
-    <img src='/static/images/2017/buck-converter/fig1-2.png'/>
+    <img src='/static/images/blog/2017/buck-converter/fig1-2.png'/>
     <small>圖 1-2 常見的幾種 DC-DC switching converter</small>
 </center>
 
@@ -40,7 +40,7 @@ power MOSFET 和 diode 扮演著 switch 的角色，透過 gate 極輸入 PWM �
 L 與 C 則扮演著儲能與濾波的功能，當 switch 接通時儲存能量，switch 斷開時提供能量，讓整個電路可以保持流通，同時降低其 V<sub>O</sub> 的 ripple。
 
 <center>
-    <img src='/static/images/2017/buck-converter/fig1-3.png' width='400'/>
+    <img src='/static/images/blog/2017/buck-converter/fig1-3.png' width='400'/>
     <small>圖 1-3 open-loop 狀態下 buck converter 的電路簡圖</small>
 </center>
 
@@ -53,19 +53,19 @@ L 與 C 則扮演著儲能與濾波的功能，當 switch 接通時儲存能量�
 本篇主要探討 CCM 的模式下 buck converter 的種種元件特性。
 
 <center>
-    <img src='/static/images/2017/buck-converter/fig1-4.png' width='350'/>
+    <img src='/static/images/blog/2017/buck-converter/fig1-4.png' width='350'/>
     <small>圖 1-4 switch 對電壓源造成 VS 與 0 間的升降</small>
 </center>
 
 <center>
-    <img src='/static/images/2017/buck-converter/fig1-5.png' width='350'/>
+    <img src='/static/images/blog/2017/buck-converter/fig1-5.png' width='350'/>
     <small>圖 1-5 兩種狀態下的 buck converter 電路簡圖</small>
 </center>
 
 在分析電路前，首先必須注意一件事情。一個正常的開關電路必定存在不理想的諧波 (harmonics)，使得輸出電壓不完全呈水平，為一直流輸出加上微小漣波 (ripple)，如圖 1-6 [^6]。
 
 <center>
-    <img src='/static/images/2017/buck-converter/fig1-6.png' width='400'/>
+    <img src='/static/images/blog/2017/buck-converter/fig1-6.png' width='400'/>
     <small>圖 1-6 Real output voltage waveform.</small>
 </center>
 
@@ -78,14 +78,14 @@ L 與 C 則扮演著儲能與濾波的功能，當 switch 接通時儲存能量�
 整理合併兩種 state 後，可以繪出 $i_L$ 對時間的關係圖在穩態時如圖 1-7 [^7]。
 
 <center>
-    <img src='/static/images/2017/buck-converter/fig1-7.png' width='350'/>
+    <img src='/static/images/blog/2017/buck-converter/fig1-7.png' width='350'/>
     <small>圖 1-7 Steady-state inductor current waveform.</small>
 </center>
 
 與此同時，其電感電壓為 $ V_S - V_O $ ，可以對時間繪出如圖 1-8 的關係 [^8]。
 
 <center>
-    <img src='/static/images/2017/buck-converter/fig1-8.png' width='350'/>
+    <img src='/static/images/blog/2017/buck-converter/fig1-8.png' width='350'/>
     <small>圖 1-8 Steady-state inductor voltage waveform.</small>
 </center>
 
@@ -107,7 +107,7 @@ $$ | \Delta I_L | = \dfrac{ V_S - V_O }{2L} DT = \dfrac{ V_O }{2L}\:(1-D)\:T $$
 由公式 $$ V_C(T) - V_C(0) = \dfrac{1}{C} \int_{0}^{T} I_C\:dt = 0 $$ 可以看出，其電流對時間的積分為 0，代表其線下面積總和為 0，電流的平均值 $$ < I_C > = 0 $$ ，如圖 1-9 所示 [^9]。
 
 <center>
-    <img src='/static/images/2017/buck-converter/fig1-9.png' width='350'/>
+    <img src='/static/images/blog/2017/buck-converter/fig1-9.png' width='350'/>
     <small>圖 1-9 Steady-state capacitor current waveform.</small>
 </center>
 
@@ -125,7 +125,7 @@ $$ \Delta V_O = V_{ripple} = \dfrac{\Delta Q}{C} = \dfrac{D(1-D)}{8LC}\:V_S\:T^2
 如前文所述，在理想的狀態下，此數值必定遠小於輸出電壓 $V_O$。如果將 $I_L$ 與 $I_C$ 對時間的關係圖相比較後，對齊整理如下圖 1-10 [^10]，可見電容的作用為濾除電感電流的 ripple。
 
 <center>
-    <img src='/static/images/2017/buck-converter/fig1-10.png' width='350'/>
+    <img src='/static/images/blog/2017/buck-converter/fig1-10.png' width='350'/>
     <small>圖 1-10 Current waveform of each part.</small>
 </center>
 
@@ -135,7 +135,7 @@ $$ \Delta V_O = V_{ripple} = \dfrac{\Delta Q}{C} = \dfrac{D(1-D)}{8LC}\:V_S\:T^2
 其元件波型如下圖 2-1 所示，其中紅色為電壓波型，綠色為電流波型 [^11]。
 
 <center>
-    <img src='/static/images/2017/buck-converter/fig2-1.png' width='600'/>
+    <img src='/static/images/blog/2017/buck-converter/fig2-1.png' width='600'/>
     <small>圖 2-1 A buck converter design with waveform.</small>
 </center>
 
@@ -177,7 +177,7 @@ $$ C_O = \dfrac{\Delta I_L\:D}{F_{PWM}\:(\Delta V_{O,Max}-R_{ESR}\:\Delta I_L)} 
 Freewheeling diode 與其相反，在通路 ($T_{ON}$) 時須要承受最大壓差 $-V_S$ ，在開路 ($T_{OFF}$) 時則有最大電流 $I_L$ [^14]。
 
 <center>
-    <img src='/static/images/2017/buck-converter/fig2-2.png' width='500'/>
+    <img src='/static/images/blog/2017/buck-converter/fig2-2.png' width='500'/>
     <small>圖 2-2 Switch and Diode waveform.</small>
 </center>
 
@@ -203,7 +203,7 @@ $$ V_{D,Max} = -V_{S,Max} + V_{D,on}\; ; \;I_{D,avg} = I_{L,avg}\:(1-D) $$
 透過一個 Sensor gain 將輸出電壓拉出，與參考電壓 (Reference input) 接到一個 error amplifier 內，再透過補償器 (compensator) 接回 PWM 產生器，最後完成訊號的修正。
 
 <center>
-    <img src='/static/images/2017/buck-converter/fig2-3.png' width='500'/>
+    <img src='/static/images/blog/2017/buck-converter/fig2-3.png' width='500'/>
     <small>圖 2-3 Closed loop buck converter design.</small>
 </center>
 
@@ -212,7 +212,7 @@ $$ V_{D,Max} = -V_{S,Max} + V_{D,on}\; ; \;I_{D,avg} = I_{L,avg}\:(1-D) $$
 將其 MPPT 系統整合進 closed loop 的電路呈現如下圖 2-4 [^16]，整合 MPPT 訊號與電壓迴授訊號進入 PWM 產生器內，利用 MPPT 尋求最高功率點，再利用補償器穩壓，最後達到所需的電壓輸出。
 
 <center>
-    <img src='/static/images/2017/buck-converter/fig2-4.png' width='350'/>
+    <img src='/static/images/blog/2017/buck-converter/fig2-4.png' width='350'/>
     <small>圖 2-4 Closed loop buck converter with MPPT.</small>
 </center>
 
@@ -226,14 +226,14 @@ $$ V_{D,Max} = -V_{S,Max} + V_{D,on}\; ; \;I_{D,avg} = I_{L,avg}\:(1-D) $$
 其中，Input 為經過雙開關的電壓輸入點，Output 為電壓輸出點。
 
 <center>
-    <img src='/static/images/2017/buck-converter/fig3-1.png' width='400'/>
+    <img src='/static/images/blog/2017/buck-converter/fig3-1.png' width='400'/>
     <small>圖 3-1 Buck converter 電路圖</small>
 </center>
 
 設計 Duty Cycle 為 1.8/5，MOSFET 之 L = 0.35μ、W = 20μ、M = 1k，之後利用 HSPICE 模擬 buck converter 的電路後，預估波型如下圖 3-2 所示。
 
 <center>
-    <img src='/static/images/2017/buck-converter/fig3-2.png' width='650'/>
+    <img src='/static/images/blog/2017/buck-converter/fig3-2.png' width='650'/>
     <small>圖 3-2 HSPICE 電路模擬圖</small>
 </center>
 
@@ -255,7 +255,7 @@ $$ I_{min} = DV_S\:(\dfrac{1}{R}-\dfrac{1-D}{2L}\:T) $$
 實際焊接成品如下圖 3-3 所示，外接正負極電源和一根 PWM 訊號線。
 
 <center>
-    <img src='/static/images/2017/buck-converter/fig3-3.png' width='500'/>
+    <img src='/static/images/blog/2017/buck-converter/fig3-3.png' width='500'/>
     <small>圖 3-3 Buck converter 硬體電路實現</small>
 </center>
 

@@ -97,7 +97,7 @@ def showpost(request, slug):
 ```
 我們回到 post 頁面發表留言：
 
-![](/static/images/2021/Django/new-comment.png)
+![](/static/images/blog/2021/Django/new-comment.png)
 
 按下「張貼」後，網址會刷新成以下附帶參數的形式，代表順利用 GET 方式更新資料庫：
 ```
@@ -211,8 +211,8 @@ path('user/', views.user)
 
 完成後即可順利在 http://localhost:8000/user/ 中貼文並儲存在資料庫。
 
-![](/static/images/2021/Django/new-post.png)
-![](/static/images/2021/Django/new-post2.png)
+![](/static/images/blog/2021/Django/new-post.png)
+![](/static/images/blog/2021/Django/new-post2.png)
 
 ### 表單驗證碼
 
@@ -263,12 +263,12 @@ class PostForm(forms.ModelForm):
 
 完成後即可順利看到驗證碼出現在表單內。
 
-![](/static/images/2021/Django/simple-captcha.png)
+![](/static/images/blog/2021/Django/simple-captcha.png)
 
 除了 django-simple-captcha 模組，我們也可以使用 Google 提供的 reCAPTCHA 驗證方式。
 首先我們到 [官網](https://www.google.com/recaptcha/admin/create) 註冊資料，選擇 reCAPTCHA v2 或 v3 版本都行，網域填寫 127.0.0.1 或是 localhost，讓我們在本地端使用。
 
-![](/static/images/2021/Django/reCAPTCHA.png)
+![](/static/images/blog/2021/Django/reCAPTCHA.png)
 
 註冊完成後，需要複製網站金鑰 (Site key) 與密鑰 (Secret key) ，網站金鑰放在 HTML 內，密鑰則放在伺服器內。
 請到 settings.py 加入以下敘述：
@@ -335,4 +335,4 @@ def user(request):
 
 完成後即可順利用 Google reCAPTCHA 來驗證使用者，相關設定可以自行參考 Google API [文件](https://developers.google.com/recaptcha/docs/verify)。
 
-![](/static/images/2021/Django/reCAPTCHA2.png)
+![](/static/images/blog/2021/Django/reCAPTCHA2.png)

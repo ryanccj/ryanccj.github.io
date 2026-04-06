@@ -6,7 +6,7 @@ draft: false
 summary: 'Biologists have always been curious about gene regulation mechanisms, such as which proteins are involved in which reactions, the combination of RNAs in which locations, and what outcomes are generated for target genes. This website may provide answers to your questions.'
 ---
 
-![](/static/images/2024/sRNA_Analyst/tools.png)
+![](/static/images/blog/2024/sRNA_Analyst/tools.png)
 > A Comprehensive Tool for In-depth Analysis of sRNA-seq Data across Conditions and Target Genes.
 
 **Website:** https://cosbi7.ee.ncku.edu.tw/sRNAanalyst  
@@ -21,14 +21,14 @@ sRNA Analyst is a web-based analysis tool optimized for sRNA-seq data, including
 - The **downstream analysis tools** include Transcriptome Browser, Metagene, Region Density Distribution, Position (head/tail/start codon/stop codon) Read-count Distribution, Fold-change, and Scatter Plot, assisting in observing the distribution of small RNA on specific target RNA under different datasets.
 - The **database** contains experimental datasets primarily focused on C.elegans, along with common model organism miRNA, mRNA references, and partial target gene lists of worm, including Soma target, Germline target, WAGO and CSR-1 target.
 
-![](/static/images/2024/sRNA_Analyst/workflow.png)
+![](/static/images/blog/2024/sRNA_Analyst/workflow.png)
 
 ## Website Architecture
 sRNA Analyst uses the **Django MTV** (Model-Template-View) architecture, dividing each module and running them independently. The Model serves as the data module, mainly connecting the backend program with the database; the Template acts as the view module, also known as the presentation layer, primarily defining how frontend pages are presented (including HTML, CSS, and JavaScript); the View serves as the control module, mainly handling frontend requests, such as passing form data, performing computational analysis, etc.
 
 The frontend program of sRNA Analyst is primarily written in **jQuery** and utilizes **Bootstrap** as the overall template. It uses DataTables to beautify tables and employs D3 to draw dynamic graphics. The backend is developed using Python and R languages, utilizing Shell Script to integrate various preprocessing tools and increasing computational efficiency through parallel processing. The web frontend and backend are connected via **Restful API**, enabling flexible interaction.
 
-<img src="/static/images/2024/sRNA_Analyst/MTV.png" width='400' style={{margin:'auto'}}/>
+<img src="/static/images/blog/2024/sRNA_Analyst/MTV.png" width='400' style={{margin:'auto'}}/>
 
 ## Installation and Usage
 sRNA Analyst provides both **CLI** and **Web** tools, both of which have **Docker** versions.
@@ -37,4 +37,4 @@ sRNA Analyst provides both **CLI** and **Web** tools, both of which have **Docke
 - To use the Web tool, refer to the [website](https://cosbi7.ee.ncku.edu.tw/sRNAanalyst), and follow the instructions on the Tutorial page to upload data and select analysis tools.
 - If network bandwidth and research confidentiality are concerns, you can use our Docker version available on [Github](https://github.com/RyanCCJ/sRNAanalyst-docker) and [Dockerhub](https://hub.docker.com/repository/docker/ryanccj/srna-analyst/). This allows you to run an Nginx Server locally and use the Web tool in your browser at [http://localhost/sRNAanalyst](http://localhost/sRNAanalyst).
 
-![](/static/images/2024/sRNA_Analyst/docker.png)
+![](/static/images/blog/2024/sRNA_Analyst/docker.png)

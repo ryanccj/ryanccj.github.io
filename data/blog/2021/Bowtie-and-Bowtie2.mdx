@@ -10,7 +10,7 @@ summary: 'Bowtie2 是目前最主流的基因比對工具之一，這篇文章�
 
 > Bowtie is an ultrafast, memory-efficient short read aligner. It aligns short DNA sequences (reads) to the human genome at a rate of over 25 million 35-bp reads per hour.
 
-![](/static/images/2021/Bowtie-and-Bowtie2/mapping.png)
+![](/static/images/blog/2021/Bowtie-and-Bowtie2/mapping.png)
 
 這是一個用來將基因片段 (read) 配對進整條基因 (reference) 的工具，透過演算法判斷最有可能的基因片段位置。
 舊版 Bowtie 只能偵測字元不匹配 (mismtach) 的情況，新版 Bowtie2 還可以判斷字元不見 (gap) 的情況，而且運算速度更快。兩者參數、檔案皆不互通，以下教學僅提供 Bowtie2 的三支主程式。[^1]

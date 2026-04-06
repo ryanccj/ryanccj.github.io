@@ -6,7 +6,7 @@ draft: false
 summary: '10min 教你如何用 Line Bot 串接 Garmin inReach mini'
 ---
 
-![](/static/images/2024/inreach-to-linebot/title.jpg)
+![](/static/images/blog/2024/inreach-to-linebot/title.jpg)
 
 前陣子看到馬克褚大大的社群有人發文，教大家如何將 Garmin inReach mini 的訊息透過 server 轉發到 Line 群組上 [^1]。
 雖然出發點很好，但要克服兩個問題：一是你要有專業版帳號，二是你要有自己的伺服器。
@@ -19,7 +19,7 @@ summary: '10min 教你如何用 Line Bot 串接 Garmin inReach mini'
 [^1]: 徐晴明, "inreach 與 LINE 橋接實作演示", FB 馬克褚工作室－Garmin inReach－經驗交流聯誼會, https://www.facebook.com/groups/1836965556473016/?hoisted_section_header_type=recently_seen&multi_permalinks=2549460761890155
 
 ## 什麼是 Garmin inReach mini?
-![](/static/images/2024/inreach-to-linebot/inreach.jpg)
+![](/static/images/blog/2024/inreach-to-linebot/inreach.jpg)
 
 這個東西登山圈的人鐵定不陌生，但是以防其他圈子逛進來的朋友不知道，還是稍微說明一下。
 當我們在從事登山、航海等戶外活動，經常沒有網路訊號。
@@ -55,7 +55,7 @@ Garmin inReach mini 可以透過 mail 或手機簡訊發送訊息（其實還有
 點選右上角「登入」按鈕，登入後在選單裡選擇「個人頁面」，產生一組專門匹配該群組的「發行權杖」(token)，填寫的名稱會成為後續發送訊息的名稱。
 例如我在 Line 建立一個叫「成大山協-山防」的群組，並在 Line Notify 產生一組專門與之對應的 token 叫「NCKU Garmin inReach」。
 實際產生的 token 會是一組很長的亂碼，先複製起來等下會用到。
-![](/static/images/2024/inreach-to-linebot/notify.png)
+![](/static/images/blog/2024/inreach-to-linebot/notify.png)
 
 接下來，我們要實作自己的 Line Bot。
 登入預計用來接收 Garmin 訊息的 gmail 帳戶，以我這篇為例，就是直接使用成大山協的官方 gmail。
@@ -111,11 +111,11 @@ function main() {
 
 接著按下上面工具列的儲存鍵，將下拉選單中 `send_line` 改為 `main`，然後按下旁邊的執行按鈕。
 Google 應該會要求使用者進行帳戶權限審查，一路允許到底即可。
-<img src="/static/images/2024/inreach-to-linebot/run_code.png" width='500'/>
+<img src="/static/images/blog/2024/inreach-to-linebot/run_code.png" width='500'/>
 
 接著點選左側選單的「觸發條件」並新增一個觸發條件，這裡我們一樣要將執行功能改為 `main`，然後選取時間型觸發條件類型改為「分鐘計時器」，選取分鐘間隔改為「每分鐘」。
 儲存後一樣通過帳戶權限認證即可順利完成。
-<img src="/static/images/2024/inreach-to-linebot/trigger.png" width='500'/>
+<img src="/static/images/blog/2024/inreach-to-linebot/trigger.png" width='500'/>
 
 補充說明一下，在這邊我們的策略是每分鐘觸發一次這個 Apps Script，程式碼會透過 `GmailApp.search()` 去 gmail 抓過去一分鐘的所有新郵件，
 並從標題判斷是否含有 `inReach` 字串；如果有，就將這篇郵件的標題與內文轉寄到 Line 群組裡。
@@ -127,7 +127,7 @@ Google 應該會要求使用者進行帳戶權限審查，一路允許到底即�
 ## 結果
 最後，我們還要將 **LINE Notify** 官方帳號加進去我們的 Line 群，這樣當 inReach 訊息進來時，他就會主動跳出來通知我們郵件內容。
 結果如下所示：
-<img src="/static/images/2024/inreach-to-linebot/message.png" width='300'/>
+<img src="/static/images/blog/2024/inreach-to-linebot/message.png" width='300'/>
 
 圖中可見，雖然我們可以順利用 Line 接收訊息，但不能直接從這裡回傳資訊，要透過 Garmin 連結至官方網頁發送訊息。
 如果想要有直接回傳的功能，可以回頭參考馬克褚社團裡的貼文 [^1]，升級成專業帳號並將 Line Bot 的內容修改一下即可。

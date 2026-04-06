@@ -17,7 +17,7 @@ with open('file.txt', 'r') as f:
 Garbage collector 除了會在退出 with 時清理資源，還會在 reference count = 0（即沒有任何人在用這個變數）和程式結束時釋放資源，這其中甚至包含 file object 與外部連線資源。
 
 這次遇到的問題即是在程式結束時，會意外噴出一堆 Attribute Error。最神奇的是這個 error 不常發生，噴出的時機與噴出的量（error數量）都難以捉摸。雖不影響程式本身執行，但看了就頭痛。
-![Error Msg](/static/images/2024/Python-GC-and-R/error-message.png)
+![Error Msg](/static/images/blog/2024/Python-GC-and-R/error-message.png)
 
 從 error message 中可以看出，它在清除 rpy2 套件中的 SexpCapsule object 時無法正確釋放某個 R_ReleaseObject。補充說明一下，rpy2 是一個可以在 Python 內運行 R 語言的套件，但並不是真的可以模擬 R，而是將程式與資料包裝起來與系統內的 R 互動，所以還是需要安裝 r-base。以下是我的執行環境：
 - Python 3.5.2

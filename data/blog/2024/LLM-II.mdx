@@ -6,7 +6,7 @@ draft: false
 summary: 'LLM 系列文的第二章，著重在語言模型的改進方法，包含提示工程、微調、增強式學習'
 ---
 
-![](/static/images/2024/LLM/LLM2.png)
+![](/static/images/blog/2024/LLM/LLM2.png)
 
 ## 目錄
 
@@ -81,7 +81,7 @@ Output:
 例如將複雜的問題拆解成好幾步，每一步都請語言模型生成多次結果，再透過反省的方式找出正確答案，用正確答案串接並推進下一步。
 這種運用 DFS 逐步檢查並產出結果的方式，又被稱作 **Tree of Thoughts (ToT)**。 [^2]
 
-![](/static/images/2024/LLM/tree-of-thoughts.png)
+![](/static/images/blog/2024/LLM/tree-of-thoughts.png)
 
 [^2]: Shunyu Yao, et al. "Tree of thoughts: Deliberate problem solving with large language models." Advances in Neural Information Processing Systems 36, 2024.
 
@@ -107,7 +107,7 @@ Output:
 
 [^3]: Hugo Touvron, et al. "Llama 2: Open foundation and fine-tuned chat models." arXiv preprint arXiv:2307.09288, 2023.
 
-<img src="/static/images/2024/LLM/LLaMA.png" style={{margin:'auto'}}/>
+<img src="/static/images/blog/2024/LLM/LLaMA.png" style={{margin:'auto'}}/>
 <center><small>各種以 LLaMA 為基礎的模型開枝散葉。來源：A survey of large language models (2023). [^4]</small></center>
 
 [^4]: Wayne Xin Zhao, et al. "A survey of large language models." arXiv preprint arXiv:2303.18223, 2023.
@@ -131,7 +131,7 @@ $$ h = W \cdot x = W_0 \cdot x + \Delta W \cdot x $$
 這樣我們實際上只需要訓練原本 0.4% 的參數即可。
 透過將矩陣降維 (low-rank projection)，我們只需要更新幾個關鍵資訊即可達到不錯的訓練效果。
 
-<img src="/static/images/2024/LLM/LoRA.png" width='300' style={{borderRadius:'3%'}}/>
+<img src="/static/images/blog/2024/LLM/LoRA.png" width='300' style={{borderRadius:'3%'}}/>
 
 實際在模型微調時，整個模型依然必須被載入記憶體裡，無法節省空間。
 即便主要參數凍結（不再調整）也還是需要被計算，所以也無法節省 forward 時的運算量。
@@ -274,7 +274,7 @@ model = PeftModel.from_pretrained(model, "./checkpoint-65")
 - Supervised Fine-tuning (SFT)：也就是上文提到過，透過監督式學習進行模型參數的微調
 - Reinforcement Learning (RL)：這章即將要論述，透過回饋來幫助模型產生人類更偏好的答案
 
-<img src="/static/images/2024/LLM/LLM-3steps.jpg" style={{margin:'auto'}}/>
+<img src="/static/images/blog/2024/LLM/LLM-3steps.jpg" style={{margin:'auto'}}/>
 <center><small>LLM 訓練的三步驟：pre-training、fine-tuning、reinforcement learning（[圖片來源](https://cameronrwolfe.substack.com/p/rlaif-reinforcement-learning-from)）</small></center>
 
 後面 SFT + RL 的過程又被統稱作 Alignment，用來與人類的偏好對齊。
@@ -289,14 +289,14 @@ RLHF 的過程不單只是產生更精準的答案，還包含結合人類的偏
 LLM 會試著產生更高分的答案來符合回饋模型的期待，這種方式又被稱作基於 AI 回饋的增強式學習 (RLAIF) [^7]。
 [^7]: Harrison Lee, et al. "RLAIF vs. RLHF: Scaling Reinforcement Learning from Human Feedback with AI Feedback." Forty-first International Conference on Machine Learning, 2024.
 
-![](/static/images/2024/LLM/RLAIF.png)
+![](/static/images/blog/2024/LLM/RLAIF.png)
 
 ChatGPT 的前身 InstructGPT ，其論文對於 RL 的優點有諸多著墨 [^8]。
 下圖左是不同技術的比較，包含適當的 prompting、加入 SFT，以及使用 PPO（OpenAI 預設的 RL 方式），可見其效果有顯著提升。
 如果將不同大小的模型相比較（下圖右），有經過 PPO 的 1.3B 模型甚至可以超越只有經過 SFT 的 175B 模型。
 [^8]: Long Ouyang, et al. "Training language models to follow instructions with human feedback." Advances in neural information processing systems 35 (2022): 27730-27744.
 
-![](/static/images/2024/LLM/PPO.png)
+![](/static/images/blog/2024/LLM/PPO.png)
 
 ### 股價預測器
 
@@ -322,7 +322,7 @@ ChatGPT 的前身 InstructGPT ，其論文對於 RL 的優點有諸多著墨 [^8
 | 2 | 台灣股市近期受到什麼因素影響？ | 近期國際市場波動和美國升息政策影響了台灣股市的走勢。 | 台股表現受國際經濟、政策變動及市場情緒影響，未來走勢難以預測。 |
 | 3 | 台灣股市的金融股這週表現如何？ | 金融股這週小幅上漲，反映出投資者對本地經濟穩定的信心。 | 金融股表現與國內經濟狀況相關，近期波動性高，需密切關注市場消息。 |
 
-![](/static/images/2024/LLM/DPO.png)
+![](/static/images/blog/2024/LLM/DPO.png)
 
 我們首先下載 [Transformer Reinforcement Learning (TRL)](https://huggingface.co/docs/trl/index) 套件，裡面已整理所有常見的 RL 方法：
 ```bash

@@ -6,7 +6,7 @@ draft: false
 summary: 'We create a smart dumbbell that can detect whether the movements of rehabilitation patients are correct.'
 ---
 
-![](/static/images/2019/smart-dumbbell/title.png)
+![](/static/images/blog/2019/smart-dumbbell/title.png)
 
 ## 簡介
 
@@ -27,7 +27,7 @@ summary: 'We create a smart dumbbell that can detect whether the movements of re
 - 長照 2.0 提供 ABC 級照護服務 (參考下圖)
 - 推行預防及延緩失能照護計畫
 
-<img src="/static/images/2019/smart-dumbbell/ABC-care.png" width='500'/>
+<img src="/static/images/blog/2019/smart-dumbbell/ABC-care.png" width='500'/>
 
 有些照護中心會由一名教練 (教練/護士/物理治療師) 指導 12-15 名高齡者做操 (無手持器材)。
 有鑑於此，我們希望藉由一款阻力運動器材提升高齡者運動時的興趣與動機，同時兼顧安全以及運動成效。
@@ -36,13 +36,13 @@ summary: 'We create a smart dumbbell that can detect whether the movements of re
 
 我們參考文獻並討論出適合抓握與動作的尺寸和重量，交由工業設計系的學生建立模型，並使用 3D 列印機製造出產品原型。
 
-<img src="/static/images/2019/smart-dumbbell/ergonomics1.png" width='600'/>
-<img src="/static/images/2019/smart-dumbbell/ergonomics2.png" width='600'/>
-![](/static/images/2019/smart-dumbbell/ergonomics3.png)
+<img src="/static/images/blog/2019/smart-dumbbell/ergonomics1.png" width='600'/>
+<img src="/static/images/blog/2019/smart-dumbbell/ergonomics2.png" width='600'/>
+![](/static/images/blog/2019/smart-dumbbell/ergonomics3.png)
 
 ## 操作過程
 
-![](/static/images/2019/smart-dumbbell/how-to-use.png)
+![](/static/images/blog/2019/smart-dumbbell/how-to-use.png)
 
 智慧啞鈴的設計情境是由一位教練帶領一群學員進行阻力訓練。
 每台啞鈴功能一致，透過一顆 switch button 來切換教練或學員模式，再藉由無線傳輸模組進行配對。
@@ -61,13 +61,13 @@ summary: 'We create a smart dumbbell that can detect whether the movements of re
 
 ## 電路設計
 
-<img src="/static/images/2019/smart-dumbbell/components.png" width='470' class='inline-block' style={{margin:'auto'}}/>
-<img src="/static/images/2019/smart-dumbbell/prototype.png"  width='282' class='inline-block' style={{margin:'auto'}}/>
+<img src="/static/images/blog/2019/smart-dumbbell/components.png" width='470' className='inline-block' style={{margin:'auto'}}/>
+<img src="/static/images/blog/2019/smart-dumbbell/prototype.png"  width='282' className='inline-block' style={{margin:'auto'}}/>
 
 智慧啞鈴主要使用 Arduino Nano 開發板，搭配鋰電池充電模組、nRF24L01 2.4G 無線傳輸模組，以及 GY-85 九軸感測器模組。
 透過 PSpice 軟體進行電路設計與 layout，並手動焊接 20 顆 LED 燈條，最終將成品組裝在 PCB 板上。
 
-<img src="/static/images/2019/smart-dumbbell/schematic.png" width='500'/>
+<img src="/static/images/blog/2019/smart-dumbbell/schematic.png" width='500'/>
 
 ## 程式設計
 
@@ -84,7 +84,7 @@ $$ \theta_{z} = tan^{-1} \left[\frac{A_z}{\sqrt{(A_x)^2\;+\;(A_y)^2}} \right] \t
 GY-85 每 0.1s 取樣一次，直到教練完成動作錄製。教練機將數據發送至學員機，學員機則將動作數據保存在記憶體內。
 在學員依據指示動作期間，GY-85 會持續記錄其角度變化並與教練的數據做比對，一旦發現超過某個 margin，便會跳出偵測迴圈並以紅色 LED 閃燈提醒使用者；反之若順利完成動作，便會閃爍綠燈表示正確。
 
-<img src="/static/images/2019/smart-dumbbell/workflow.png" width='600'/>
+<img src="/static/images/blog/2019/smart-dumbbell/workflow.png" width='600'/>
 
 透過以上設計，教練與學員之間可以透過智慧啞鈴持續互動，且能夠在一對多的情境中迅速發現某位學員的動作不夠標準，以此改善教學品質，達到精進訓練或復健之目的。
 
@@ -95,8 +95,8 @@ GY-85 每 0.1s 取樣一次，直到教練完成動作錄製。教練機將數�
 因為對方有一位來自印尼的留學生，整個合作過程我們必須以全英文溝通。
 這個專案最終入園印尼的圓夢計畫，並將成果發表在 2019 IEEE CONMEDIA conference。 [^1]
 
-<img src="/static/images/2019/smart-dumbbell/paper.png" width='200' class='inline-block' style={{margin:'auto'}}/>
-<img src="/static/images/2019/smart-dumbbell/paper2.png" width='310' class='inline-block' style={{margin:'auto', padding:15}}/>
+<img src="/static/images/blog/2019/smart-dumbbell/paper.png" width='200' className='inline-block' style={{margin:'auto'}}/>
+<img src="/static/images/blog/2019/smart-dumbbell/paper2.png" width='310' className='inline-block' style={{margin:'auto', padding:15}}/>
 
 [^1]: Elizabeth Wianto, YH Chen, CY Chang, YY Tung, ZC Sheng, **CJ Chung**, CH Chen, YC Lin, "Enhancing Quality of Life based on Physical Activity for Indonesian Elderly: A Preliminary Study for Design
 Recommendation", IEEE CONMEDIA, Oct 2019, ISBN: 978-1-7281-0725-7

@@ -23,7 +23,7 @@ User Mode：有限資源，只能存取部分記憶體，不能存取I/O
 3. Process 的 Context Switch 慢，管理成本高
 4. process 五個狀態
 
-![](/static/images/2023/linux-kernel/process.png)
+![](/static/images/blog/2023/linux-kernel/process.png)
 - new → ready: Job scheduler 允許工作進入系統，建立 process，配置記憶體空間載入程式碼
 - ready → running: CPU scheduler 由 ready queue 選擇一個 priority 最高的 process 到 CPU 執行，這裡會進行 context switch
 - running → waiting: 發生較長時間的中止時，如 I/O request、Semaphore operation、Receive Message 等，Process 會先 block 住
@@ -89,18 +89,18 @@ User Mode：有限資源，只能存取部分記憶體，不能存取I/O
 ### Page Replacement Algorithm
 舉例：3 個 frame 與 A~E page
 - First in First out Page Replacement(FIFO)
-![](/static/images/2023/linux-kernel/page1.png)
+![](/static/images/blog/2023/linux-kernel/page1.png)
     - 實作起來最為容易
 - Least Recently Used Page Replacement(LRU)
-![](/static/images/2023/linux-kernel/page2.png)
+![](/static/images/blog/2023/linux-kernel/page2.png)
     - 需使用計數變數(Counter)去儲存每個在頁框內的分頁使用後閒置的時間(數字愈小表示愈久之前使用過)
     - 實行起來成效顯著
 - The Clock Page Replacement (Second Chance)
-![](/static/images/2023/linux-kernel/page3.png)
+![](/static/images/blog/2023/linux-kernel/page3.png)
 - Random Page Replacement
-![](/static/images/2023/linux-kernel/page4.png)
+![](/static/images/blog/2023/linux-kernel/page4.png)
 - Optimal Page Replacement
-![](/static/images/2023/linux-kernel/page5.png)
+![](/static/images/blog/2023/linux-kernel/page5.png)
     - 將於實體記憶體頁框中，不會再次被使用或是最久才會再次被使用的分頁給取代掉
     - 實作起來最非常困難，因為要預知未來可能會存取的分頁，但是這個將會是理想最佳解
 
@@ -108,7 +108,7 @@ User Mode：有限資源，只能存取部分記憶體，不能存取I/O
 ## Race Condition
 當多個thread修改同一個資源時，就有可能產生。
 例如 thread 1 作加一，thread 2 作減一，結果讀到同一個值，thread 2 結果覆蓋掉 thread 1。
-![](/static/images/2023/linux-kernel/race-condition.png)
+![](/static/images/blog/2023/linux-kernel/race-condition.png)
 ### 解決辦法
 1. Atomic 操作：原子操作可以讓資料存取的動作在不被中斷的情況下執行，避免資料讀取/寫入的過程被中斷而產生錯誤。
     - 該 operation 是不可分割的 (all or nothing)
@@ -131,7 +131,7 @@ User Mode：有限資源，只能存取部分記憶體，不能存取I/O
     - P operation: -1
 6. 使用訊息佇列 (Message Queue)：將需要存取共享資源的操作都放在佇列中，由專門的執行緒處理，避免同時存取資料造成的問題。
 7. Peterson’s algorithm (1981年)：
-![](/static/images/2023/linux-kernel/Peterson.png)
+![](/static/images/blog/2023/linux-kernel/Peterson.png)
 
 ### 比較
 隨著電腦硬體逐漸提供 atomic 指令後，mutex 或稱為 lock 的機制被列入作業系統的實作考量:
@@ -167,13 +167,13 @@ Spinlock 是 busy waiting，Semaphore 是 sleep
 
 如下圖所示，原本 task1 的 priority 最高，但因為被 task3 CS 卡住，導致必須等 task3 執行完才能執行，造成 priority inversion
 
-![](/static/images/2023/linux-kernel/priority-inversion.png)
+![](/static/images/blog/2023/linux-kernel/priority-inversion.png)
 
 修正方式：
 1. **Priority Inheritance（優先權繼承）**：當 task3 使用 CS 時，如果發生 priority inversion，將其 priority 繼承當前最高（盡快用完 CS），之後再降回原本階級（如下圖，避免 task2 插入 task1 前）
 2. **Priority Ceiling（優先權上限）**：將資源設定一個超高 priority 專門給使用該 CS 的 task 使用，使用後降為原本階級
 
-![](/static/images/2023/linux-kernel/priority-inversion2.png)
+![](/static/images/blog/2023/linux-kernel/priority-inversion2.png)
 
 ## Dead Lock
 死結發生必須同時符合以下條件：
@@ -182,7 +182,7 @@ Spinlock 是 busy waiting，Semaphore 是 sleep
 - No Preemption：不能強迫程式放棄已拿到的資源
 - Circular Wait：程式的等待條件包含彼此之間執行完畢
 
-![](/static/images/2023/linux-kernel/deadlock-prevention.png)
+![](/static/images/blog/2023/linux-kernel/deadlock-prevention.png)
 
 ### 哲學家就餐問題 Dining philosophers problem
 **問題：** 五個哲學家圍繞圓桌，每人左右各一隻叉子（總共五隻），他們只能選擇吃飯（使用兩隻叉子）或冥想（wait）

@@ -51,11 +51,14 @@ summary: 'Deep Learning 系列文第二章，著重在影像辨識的技術原�
 <center><small>Architecture of AlexNet (2012). [^5]</small></center>
 [^5]: Alex Krizhevsky, Ilya Sutskever, and Geoffrey E. Hinton. "Imagenet classification with deep convolutional neural networks." Advances in neural information processing systems 25 (2012).
 
-2019 年 Rich Sutton 在他的部落格發表一篇看似平淡無奇卻寓意深遠的文章「[The Bitter Lesson](http://incompleteideas.net/IncIdeas/BitterLesson.html)」。
+2019 年 Rich Sutton 在他的部落格發表一篇寓意深遠的文章「[The Bitter Lesson](http://incompleteideas.net/IncIdeas/BitterLesson.html)」。
 他認為在人工智慧的發展歷史中，最重要的教訓就是：**使用更多的計算資源來學習更通用的知識，通常會比使用專家知識來解決特定問題更有效**。
 也許我們在研究初期透過領域知識建立規則和假設，可以獲得初步的成果，最終的成功卻往往令人難以接受，因為它不是建立在以 **人類知識** 為中心的方法上，而是建立在更基礎且通用的元方法 (meta-method)，且隨著計算資源的增長會變得更加強大。
 西洋棋 Deep Blue 是如此、圍棋 AlphaGo 是如此、卷積神經網路更是如此。
 時至今日已經沒有人在手刻特徵，而是直接使用神經網路來自動搜索特徵。而這正是深度學習萌芽的起點。
+
+> 後續補充：其實在特定領域，手刻特徵依然是主流（例如工業檢測），有很多因素導致 AI 無法快速導入，例如資料量不足、標注成本高、開發環境有限等。
+> 然而隨著 AI 逐漸普及，我相信基於人類知識的特徵工程會逐漸被淘汰，取而代之的是自動化的深度學習方法。
 
 ## 卷積神經網路
 那究竟什麼是卷積神經網路 (CNN) 呢？其實就是將 **卷積 (convolution)** 與 **池化 (pooling)** 等數學運算，應用在神經網路的架構上。

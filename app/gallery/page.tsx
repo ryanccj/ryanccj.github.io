@@ -9,14 +9,11 @@ export const metadata = genPageMetadata({
 
 export default function GalleryPage() {
   return (
-    <div className="divide-y divide-gray-200 dark:divide-gray-700">
-      <div className="space-y-3 pb-8 pt-6 md:space-y-5">
-        <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
+    <div>
+      <div className="pb-6 pt-6 lg:p-0">
+        <h1 className="text-2xl font-extrabold leading-8 tracking-tight text-gray-900 dark:text-gray-100 sm:text-3xl sm:leading-9 lg:sr-only">
           Gallery
         </h1>
-        <p className="max-w-2xl text-lg leading-7 text-gray-500 dark:text-gray-400">
-          Photographs from trails, cliffs, water, and the quieter moments in between.
-        </p>
       </div>
       <div className="py-10">
         <GalleryGrid albums={galleryAlbums} photos={galleryPhotos} />

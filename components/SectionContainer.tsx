@@ -2,10 +2,19 @@ import { ReactNode } from 'react'
 
 interface Props {
   children: ReactNode
+  variant?: 'shell' | 'content'
 }
 
-export default function SectionContainer({ children }: Props) {
+export default function SectionContainer({ children, variant = 'content' }: Props) {
   return (
-    <section className="mx-auto max-w-3xl px-4 sm:px-6 xl:max-w-5xl xl:px-0">{children}</section>
+    <section
+      className={
+        variant === 'shell'
+          ? 'box-border w-full min-w-0 px-[clamp(16px,4vw,64px)]'
+          : 'w-full min-w-0'
+      }
+    >
+      {children}
+    </section>
   )
 }

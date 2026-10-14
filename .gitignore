@@ -47,7 +47,7 @@ yarn-error.log*
 .contentlayer
 
 # agent
-.agent/
+.agents/
 .claude/
 .codex/
 .gemini/

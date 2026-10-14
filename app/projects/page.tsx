@@ -7,17 +7,14 @@ export const metadata = genPageMetadata({ title: 'Projects' })
 export default function Projects() {
   return (
     <>
-      <div className="divide-y divide-gray-200 dark:divide-gray-700">
-        <div className="space-y-2 pb-8 pt-6 md:space-y-5">
-          <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
+      <div>
+        <div className="pb-6 pt-6 lg:p-0">
+          <h1 className="text-2xl font-extrabold leading-8 tracking-tight text-gray-900 dark:text-gray-100 sm:text-3xl sm:leading-9 lg:sr-only">
             Projects
           </h1>
-          <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
-            A curation of technical work and creative explorations across various domains.
-          </p>
         </div>
-        <div className="container py-12">
-          <div className="-m-4 flex flex-wrap">
+        <div className="py-12">
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {projectsData.map((d) => (
               <Card
                 key={d.title}

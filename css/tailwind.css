@@ -2,6 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Keep intrinsic media and long technical content inside their layout column. */
+.prose {
+  font-size: 1.125rem;
+  line-height: 2rem;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.prose pre {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-wrap: normal;
+}
+
+.prose iframe,
+.prose video,
+.prose svg {
+  max-width: 100%;
+}
+
 .task-list-item::before {
   @apply hidden;
 }

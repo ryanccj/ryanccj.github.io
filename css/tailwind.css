@@ -56,13 +56,15 @@ input:-webkit-autofill:focus {
 
 @layer components {
   .gallery-masonry {
-    columns: 1;
-    column-gap: 1rem;
+    /* Avoid Safari column fragmentation artifacts when photo cards animate. */
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+    gap: 1rem;
   }
 
   .gallery-masonry-item {
-    break-inside: avoid;
-    margin-bottom: 1rem;
+    min-width: 0;
   }
 
   .gallery-filter-pill {
@@ -74,13 +76,11 @@ input:-webkit-autofill:focus {
   }
 
   .gallery-card-shell {
-    @apply relative block overflow-hidden rounded-[1.75rem] border border-gray-200/80 bg-gray-100 shadow-sm transition duration-300 ease-out hover:-translate-y-1 hover:shadow-xl hover:shadow-gray-900/10 dark:border-gray-800/80 dark:bg-gray-900 dark:hover:shadow-black/25;
+    @apply relative block overflow-hidden rounded-[1.75rem] border border-gray-200/80 bg-gray-100 shadow-sm transition duration-300 ease-out hover:shadow-xl hover:shadow-gray-900/10 dark:border-gray-800/80 dark:bg-gray-900 dark:hover:shadow-black/25;
   }
 
   .gallery-card-image {
-    transition:
-      transform 350ms ease,
-      opacity 350ms ease;
+    transition: transform 350ms ease;
   }
 
   .gallery-card-overlay {
@@ -90,7 +90,6 @@ input:-webkit-autofill:focus {
   .gallery-card-shell:hover .gallery-card-image,
   .gallery-card-shell:focus-visible .gallery-card-image {
     transform: scale(1.035);
-    opacity: 0.92;
   }
 
   .gallery-card-shell:hover .gallery-card-overlay,
@@ -148,13 +147,13 @@ input:-webkit-autofill:focus {
 
 @media (min-width: 640px) {
   .gallery-masonry {
-    columns: 2;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (min-width: 1024px) {
   .gallery-masonry {
-    columns: 3;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
@@ -165,13 +164,13 @@ input:-webkit-autofill:focus {
   }
 
   .gallery-masonry {
-    columns: 4;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
 
 @media (min-width: 3200px) {
   .gallery-masonry {
-    columns: 5;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 }
 

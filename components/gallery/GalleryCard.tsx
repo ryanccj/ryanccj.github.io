@@ -27,10 +27,7 @@ export default function GalleryCard({
         className="gallery-card-shell group w-full text-left"
         aria-label={`Open photo ${photo.title}`}
       >
-        <div
-          className="relative overflow-hidden rounded-[1.75rem]"
-          style={{ backgroundColor: photo.placeholderColor || '#d4d4d4' }}
-        >
+        <div className="relative" style={{ backgroundColor: photo.placeholderColor || '#d4d4d4' }}>
           <Image
             src={photo.src}
             alt={photo.description || photo.title}

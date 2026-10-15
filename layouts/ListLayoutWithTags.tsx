@@ -92,7 +92,7 @@ export default function ListLayoutWithTags({
           </h1>
         </div>
         <div className="grid grid-cols-[minmax(0,1fr)] gap-x-8 lg:grid-cols-[280px_minmax(0,1fr)]">
-          <div className="hidden max-h-screen w-[280px] self-start flex-wrap overflow-auto rounded bg-gray-50 pt-5 shadow-md dark:bg-gray-900/70 dark:shadow-gray-800/40 lg:flex">
+          <div className="hidden max-h-screen w-[280px] flex-wrap self-start overflow-auto rounded bg-gray-50 pt-5 shadow-md dark:bg-gray-900/70 dark:shadow-gray-800/40 lg:flex">
             <div className="px-6 py-4">
               {isListPage ? (
                 <h3 className="font-bold uppercase text-primary-500">{listLabel}</h3>
@@ -131,11 +131,11 @@ export default function ListLayoutWithTags({
             </div>
           </div>
           <div className="min-w-0">
-            <ul>
+            <ul className="grid grid-cols-1 gap-x-8 min-[2560px]:grid-cols-2">
               {displayPosts.map((post) => {
                 const { path, date, title, summary, tags } = post
                 return (
-                  <li key={path} className="py-5">
+                  <li key={path} className="min-w-0 py-5">
                     <article className="flex flex-col space-y-2 xl:space-y-0">
                       <dl>
                         <dt className="sr-only">Published on</dt>

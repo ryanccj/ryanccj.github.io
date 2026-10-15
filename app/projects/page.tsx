@@ -14,7 +14,7 @@ export default function Projects() {
           </h1>
         </div>
         <div className="py-12">
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 min-[2560px]:grid-cols-4">
             {projectsData.map((d) => (
               <Card
                 key={d.title}

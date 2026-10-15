@@ -158,6 +158,23 @@ input:-webkit-autofill:focus {
   }
 }
 
+@media (min-width: 2560px) {
+  /* Keep the header, content, and footer aligned across all ultra-wide pages. */
+  .site-shell {
+    padding-inline: max(clamp(64px, 4vw, 128px), calc((100% - 2240px) / 2));
+  }
+
+  .gallery-masonry {
+    columns: 4;
+  }
+}
+
+@media (min-width: 3200px) {
+  .gallery-masonry {
+    columns: 5;
+  }
+}
+
 @keyframes galleryFilterOut {
   from {
     opacity: 1;

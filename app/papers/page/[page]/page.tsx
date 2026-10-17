@@ -2,8 +2,7 @@ import ListLayout from '@/layouts/ListLayoutWithTags'
 import { allCoreContent, sortPosts } from 'pliny/utils/contentlayer.js'
 import { allPapers } from 'contentlayer/generated'
 import paperTagData from 'app/paper-tag-data.json'
-
-const POSTS_PER_PAGE = 5
+import { POSTS_PER_PAGE } from '@/layouts/listPagination'
 
 export const generateStaticParams = async () => {
   const totalPages = Math.ceil(allPapers.length / POSTS_PER_PAGE)

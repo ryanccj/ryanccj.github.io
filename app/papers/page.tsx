@@ -3,8 +3,7 @@ import { allCoreContent, sortPosts } from 'pliny/utils/contentlayer.js'
 import { allPapers } from 'contentlayer/generated'
 import { genPageMetadata } from 'app/seo'
 import paperTagData from 'app/paper-tag-data.json'
-
-const POSTS_PER_PAGE = 5
+import { POSTS_PER_PAGE } from '@/layouts/listPagination'
 
 export const metadata = genPageMetadata({ title: 'Papers' })
 

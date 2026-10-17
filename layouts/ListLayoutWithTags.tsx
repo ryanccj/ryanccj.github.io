@@ -1,5 +1,6 @@
 'use client'
 
+import { useSyncExternalStore } from 'react'
 import { usePathname } from 'next/navigation'
 import { slug } from 'github-slugger'
 import { formatDate } from 'pliny/utils/formatDate.js'
@@ -9,10 +10,29 @@ import Link from '@/components/Link'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import defaultTagData from 'app/tag-data.json'
+import { getListPagination } from './listPagination'
+
+const TWO_COLUMN_QUERY = '(min-width: 2560px)'
+
+function subscribeToColumns(onChange: () => void) {
+  const media = window.matchMedia(TWO_COLUMN_QUERY)
+  media.addEventListener('change', onChange)
+  return () => media.removeEventListener('change', onChange)
+}
+
+function getTwoColumnSnapshot() {
+  return window.matchMedia(TWO_COLUMN_QUERY).matches
+}
+
+function getServerSnapshot() {
+  return false
+}
 
 interface PaginationProps {
   totalPages: number
   currentPage: number
+  previousPage?: number
+  nextPage?: number
 }
 interface ListLayoutProps {
   posts: CoreContent<Blog | Paper>[]
@@ -25,38 +45,38 @@ interface ListLayoutProps {
   tagBasePath?: string
 }
 
-function Pagination({ totalPages, currentPage }: PaginationProps) {
+function Pagination({ totalPages, currentPage, previousPage, nextPage }: PaginationProps) {
   const pathname = usePathname()
   const basePath = pathname.split('/')[1]
-  const prevPage = currentPage - 1 > 0
-  const nextPage = currentPage + 1 <= totalPages
+  const hasPrevious = previousPage !== undefined
+  const hasNext = nextPage !== undefined
 
   return (
     <div className="space-y-2 pb-8 pt-6 md:space-y-5">
-      <nav className="flex justify-between">
-        {!prevPage && (
-          <button className="cursor-auto disabled:opacity-50" disabled={!prevPage}>
+      <nav className="flex justify-between" aria-label="Pagination">
+        {!hasPrevious && (
+          <button className="cursor-auto disabled:opacity-50" disabled>
             Previous
           </button>
         )}
-        {prevPage && (
+        {hasPrevious && (
           <Link
-            href={currentPage - 1 === 1 ? `/${basePath}/` : `/${basePath}/page/${currentPage - 1}`}
+            href={previousPage === 1 ? `/${basePath}/` : `/${basePath}/page/${previousPage}`}
             rel="prev"
           >
             Previous
           </Link>
         )}
-        <span>
+        <span aria-live="polite">
           {currentPage} of {totalPages}
         </span>
-        {!nextPage && (
-          <button className="cursor-auto disabled:opacity-50" disabled={!nextPage}>
+        {!hasNext && (
+          <button className="cursor-auto disabled:opacity-50" disabled>
             Next
           </button>
         )}
-        {nextPage && (
-          <Link href={`/${basePath}/page/${currentPage + 1}`} rel="next">
+        {hasNext && (
+          <Link href={`/${basePath}/page/${nextPage}`} rel="next">
             Next
           </Link>
         )}
@@ -76,12 +96,24 @@ export default function ListLayoutWithTags({
   tagBasePath = '/tags',
 }: ListLayoutProps) {
   const pathname = usePathname()
+  const twoColumns = useSyncExternalStore(
+    subscribeToColumns,
+    getTwoColumnSnapshot,
+    getServerSnapshot
+  )
   const tagKeys = Object.keys(tagCounts)
   const sortedTags = tagKeys.sort((a, b) => tagCounts[b] - tagCounts[a])
   const isListPage =
     pathname === listPath || pathname === `${listPath}/` || pathname.startsWith(`${listPath}/page/`)
 
-  const displayPosts = initialDisplayPosts.length > 0 ? initialDisplayPosts : posts
+  const responsivePagination = pagination
+    ? getListPagination(posts.length, pagination.currentPage, twoColumns)
+    : undefined
+  const displayPosts = responsivePagination
+    ? posts.slice(responsivePagination.startIndex, responsivePagination.endIndex)
+    : initialDisplayPosts.length > 0
+      ? initialDisplayPosts
+      : posts
 
   return (
     <>
@@ -165,8 +197,13 @@ export default function ListLayoutWithTags({
                 )
               })}
             </ul>
-            {pagination && pagination.totalPages > 1 && (
-              <Pagination currentPage={pagination.currentPage} totalPages={pagination.totalPages} />
+            {responsivePagination && responsivePagination.totalPages > 1 && (
+              <Pagination
+                currentPage={responsivePagination.currentPage}
+                totalPages={responsivePagination.totalPages}
+                previousPage={responsivePagination.previousPage}
+                nextPage={responsivePagination.nextPage}
+              />
             )}
           </div>
         </div>
